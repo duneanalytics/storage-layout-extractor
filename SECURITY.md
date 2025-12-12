@@ -13,4 +13,4 @@ currently being supported with security updates.
 ## Reporting a Vulnerability
 
 Vulnerabilities can currently be reported as security advisories at 
-[this link](https://github.com/smlxl/storage-layout-extractor/security/advisories/new).
+[this link](https://github.com/duneanalytics/storage-layout-extractor/security/advisories/new).
