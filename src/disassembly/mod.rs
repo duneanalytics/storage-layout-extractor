@@ -307,7 +307,7 @@ impl ExecutionThread {
 
         let range_usize: Range<usize> = Range {
             start: range.start as usize,
-            end:   range.end as usize,
+            end: range.end as usize,
         };
 
         Some(&self.instructions[range_usize])

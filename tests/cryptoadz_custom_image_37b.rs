@@ -25,7 +25,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         0,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Bytes { length: Some(1) }),
+            key_type: Box::new(AbiType::Bytes { length: Some(1) }),
             value_type: Box::new(AbiType::Number { size: Some(16) }),
         }
     ));
@@ -35,7 +35,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         1,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Bytes { length: None }),
+            key_type: Box::new(AbiType::Bytes { length: None }),
             value_type: Box::new(AbiType::Bytes { length: Some(20) }),
         }
     ));

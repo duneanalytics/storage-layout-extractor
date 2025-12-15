@@ -103,8 +103,8 @@ mod test {
             3,
             RSVD::ExtCodeCopy {
                 address: address.clone(),
-                offset:  offset.clone(),
-                size:    size.clone(),
+                offset: offset.clone(),
+                size: size.clone(),
             },
         );
 

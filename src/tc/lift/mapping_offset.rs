@@ -45,8 +45,8 @@ impl Lift for MappingOffset {
             };
 
             Some(RSVD::MappingIndex {
-                key:        key.clone().transform_data(insert_mapping_offset),
-                slot:       slot.clone().transform_data(insert_mapping_offset),
+                key: key.clone().transform_data(insert_mapping_offset),
+                slot: slot.clone().transform_data(insert_mapping_offset),
                 projection: Some(offset),
             })
         }
@@ -73,8 +73,8 @@ mod test {
         let mapping = RSV::new_synthetic(
             2,
             RSVD::MappingIndex {
-                slot:       input_slot.clone(),
-                key:        input_key.clone(),
+                slot: input_slot.clone(),
+                key: input_key.clone(),
                 projection: None,
             },
         );
@@ -82,7 +82,7 @@ mod test {
         let add = RSV::new_synthetic(
             4,
             RSVD::Add {
-                left:  mapping.clone(),
+                left: mapping.clone(),
                 right: constant.clone(),
             },
         );
@@ -116,8 +116,8 @@ mod test {
         let inner_mapping = RSV::new_synthetic(
             2,
             RSVD::MappingIndex {
-                slot:       input_slot.clone(),
-                key:        input_key.clone(),
+                slot: input_slot.clone(),
+                key: input_key.clone(),
                 projection: None,
             },
         );
@@ -126,15 +126,15 @@ mod test {
         let inner_add = RSV::new_synthetic(
             4,
             RSVD::Add {
-                left:  inner_mapping.clone(),
+                left: inner_mapping.clone(),
                 right: inner_constant.clone(),
             },
         );
         let outer_mapping = RSV::new_synthetic(
             5,
             RSVD::MappingIndex {
-                slot:       inner_add.clone(),
-                key:        input_key.clone(),
+                slot: inner_add.clone(),
+                key: input_key.clone(),
                 projection: None,
             },
         );
@@ -143,7 +143,7 @@ mod test {
         let outer_add = RSV::new_synthetic(
             7,
             RSVD::Add {
-                left:  outer_constant.clone(),
+                left: outer_constant.clone(),
                 right: outer_mapping.clone(),
             },
         );

@@ -42,7 +42,7 @@ impl InferenceRule for EnvironmentCodesRule {
                 state.infer_for(target, TE::address());
             }
             _ => (),
-        };
+        }
 
         Ok(())
     }

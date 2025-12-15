@@ -16,13 +16,13 @@ Getting set up with this project is pretty simple.
 1. Clone the repository. If you don't want to contribute directly you can use HTTPS clones:
 
    ```shell
-   git clone https://github.com/smlxlio/storage-layout-extractor
+   git clone https://github.com/duneanalytics/storage-layout-extractor
    ```
 
    If you _do_ want to contribute directly to the tree, we recommend cloning over SSH:
 
    ```shell
-   git clone git@github.com:smlxlio/storage-layout-extractor.git
+   git clone git@github.com:duneanalytics/storage-layout-extractor.git
    ```
 
 2. Building the project is then as simple as entering the project directory and using `cargo`.
@@ -40,7 +40,7 @@ Getting set up with this project is pretty simple.
 ## Getting Your Work on `main`
 
 For contributions this repository works on a
-[Pull Request](https://github.com/smlxl/storage-layout-extractor/pulls) and subsequent review
+[Pull Request](https://github.com/duneanalytics/storage-layout-extractor/pulls) and subsequent review
 model, supported by CI to check that things avoid being broken. The process works as follows:
 
 1. If necessary, you fork the repository, but if you have access please create a branch.

@@ -55,7 +55,7 @@ where
     fn locate(self, instruction_pointer: u32) -> Self::Located {
         self.map_err(|e| Located {
             location: instruction_pointer,
-            payload:  e,
+            payload: e,
         })
     }
 }

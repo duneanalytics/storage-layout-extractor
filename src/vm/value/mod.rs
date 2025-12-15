@@ -12,9 +12,7 @@ use derivative::Derivative;
 use uuid::Uuid;
 
 use crate::{
-    tc::state::type_variable::TypeVariable,
-    utility::clip_uuid,
-    vm::value::known::KnownWord,
+    tc::state::type_variable::TypeVariable, utility::clip_uuid, vm::value::known::KnownWord,
 };
 
 /// The type of auxiliary data used at runtime.
@@ -457,12 +455,12 @@ pub enum SymbolicValueData<AuxData> {
     /// about what the call will do with the argument. Internal execution will
     /// read from memory directly, so we pick up the returned value there.
     CallWithValue {
-        gas:           BoxedVal<AuxData>,
-        address:       BoxedVal<AuxData>,
-        value:         BoxedVal<AuxData>,
+        gas: BoxedVal<AuxData>,
+        address: BoxedVal<AuxData>,
+        value: BoxedVal<AuxData>,
         argument_data: BoxedVal<AuxData>,
-        ret_offset:    BoxedVal<AuxData>,
-        ret_size:      BoxedVal<AuxData>,
+        ret_offset: BoxedVal<AuxData>,
+        ret_size: BoxedVal<AuxData>,
     },
 
     /// A message call that passes a value.
@@ -474,11 +472,11 @@ pub enum SymbolicValueData<AuxData> {
     /// about what the call will do with the argument. Internal execution will
     /// read from memory directly, so we pick up the returned value there.
     CallWithoutValue {
-        gas:           BoxedVal<AuxData>,
-        address:       BoxedVal<AuxData>,
+        gas: BoxedVal<AuxData>,
+        address: BoxedVal<AuxData>,
         argument_data: BoxedVal<AuxData>,
-        ret_offset:    BoxedVal<AuxData>,
-        ret_size:      BoxedVal<AuxData>,
+        ret_offset: BoxedVal<AuxData>,
+        ret_size: BoxedVal<AuxData>,
     },
 
     /// A keccak256 hash on symbolic values.
@@ -545,8 +543,8 @@ pub enum SymbolicValueData<AuxData> {
     /// Creates a new contract at a predictable address.
     Create2 {
         value: BoxedVal<AuxData>,
-        salt:  BoxedVal<AuxData>,
-        data:  BoxedVal<AuxData>,
+        salt: BoxedVal<AuxData>,
+        data: BoxedVal<AuxData>,
     },
 
     /// Registers the account for deletion.
@@ -593,7 +591,7 @@ pub enum SymbolicValueData<AuxData> {
 
     /// Loading the data at `offset` for `size` in the call data.
     ///
-    /// Note that CallData has non-structural identity.
+    /// Note that `CallData` has non-structural identity.
     CallData { id: Uuid, offset: BoxedVal<AuxData>, size: BoxedVal<AuxData> },
 
     /// The size of the current call data.
@@ -610,8 +608,8 @@ pub enum SymbolicValueData<AuxData> {
     /// `offset` for `size`.
     ExtCodeCopy {
         address: BoxedVal<AuxData>,
-        offset:  BoxedVal<AuxData>,
-        size:    BoxedVal<AuxData>,
+        offset: BoxedVal<AuxData>,
+        size: BoxedVal<AuxData>,
     },
 
     /// Data copied from the return data from the previous call at `offset` for
@@ -646,8 +644,8 @@ pub enum SymbolicValueData<AuxData> {
     /// The value is a mapping index with `slot` as its base and the particular
     /// location specified by `key` offset by `projection`.
     MappingIndex {
-        slot:       BoxedVal<AuxData>,
-        key:        BoxedVal<AuxData>,
+        slot: BoxedVal<AuxData>,
+        key: BoxedVal<AuxData>,
         projection: Option<usize>,
     },
 
@@ -836,39 +834,39 @@ where
                 Self::Value { .. } => inner_self,
                 Self::KnownData { .. } => inner_self,
                 Self::Add { left, right } => Self::Add {
-                    left:  left.transform_data(transform),
+                    left: left.transform_data(transform),
                     right: right.transform_data(transform),
                 },
                 Self::Multiply { left, right } => Self::Multiply {
-                    left:  left.transform_data(transform),
+                    left: left.transform_data(transform),
                     right: right.transform_data(transform),
                 },
                 Self::Subtract { left, right } => Self::Subtract {
-                    left:  left.transform_data(transform),
+                    left: left.transform_data(transform),
                     right: right.transform_data(transform),
                 },
                 Self::Divide { divisor, dividend } => Self::Divide {
                     dividend: dividend.transform_data(transform),
-                    divisor:  divisor.transform_data(transform),
+                    divisor: divisor.transform_data(transform),
                 },
                 Self::SignedDivide { divisor, dividend } => Self::SignedDivide {
                     dividend: dividend.transform_data(transform),
-                    divisor:  divisor.transform_data(transform),
+                    divisor: divisor.transform_data(transform),
                 },
                 Self::Modulo { divisor, dividend } => Self::Modulo {
                     dividend: dividend.transform_data(transform),
-                    divisor:  divisor.transform_data(transform),
+                    divisor: divisor.transform_data(transform),
                 },
                 Self::SignedModulo { divisor, dividend } => Self::SignedModulo {
                     dividend: dividend.transform_data(transform),
-                    divisor:  divisor.transform_data(transform),
+                    divisor: divisor.transform_data(transform),
                 },
                 Self::Exp { value, exponent } => Self::Exp {
-                    value:    value.transform_data(transform),
+                    value: value.transform_data(transform),
                     exponent: exponent.transform_data(transform),
                 },
                 Self::SignExtend { size, value } => Self::SignExtend {
-                    size:  size.transform_data(transform),
+                    size: size.transform_data(transform),
                     value: value.transform_data(transform),
                 },
                 Self::CallWithValue {
@@ -879,12 +877,12 @@ where
                     ret_offset,
                     ret_size,
                 } => Self::CallWithValue {
-                    gas:           gas.transform_data(transform),
-                    address:       address.transform_data(transform),
-                    value:         value.transform_data(transform),
+                    gas: gas.transform_data(transform),
+                    address: address.transform_data(transform),
+                    value: value.transform_data(transform),
                     argument_data: argument_data.transform_data(transform),
-                    ret_offset:    ret_offset.transform_data(transform),
-                    ret_size:      ret_size.transform_data(transform),
+                    ret_offset: ret_offset.transform_data(transform),
+                    ret_size: ret_size.transform_data(transform),
                 },
                 Self::CallWithoutValue {
                     gas,
@@ -893,11 +891,11 @@ where
                     ret_offset,
                     ret_size,
                 } => Self::CallWithoutValue {
-                    gas:           gas.transform_data(transform),
-                    address:       address.transform_data(transform),
+                    gas: gas.transform_data(transform),
+                    address: address.transform_data(transform),
                     argument_data: argument_data.transform_data(transform),
-                    ret_offset:    ret_offset.transform_data(transform),
-                    ret_size:      ret_size.transform_data(transform),
+                    ret_offset: ret_offset.transform_data(transform),
+                    ret_size: ret_size.transform_data(transform),
                 },
                 Self::Sha3 { data } => Self::Sha3 {
                     data: data.transform_data(transform),
@@ -926,54 +924,54 @@ where
                 Self::BaseFee => inner_self,
                 Self::Gas => inner_self,
                 Self::Log { data, topics } => Self::Log {
-                    data:   data.transform_data(transform),
+                    data: data.transform_data(transform),
                     topics: topics.iter().map(|t| t.transform_data(transform)).collect(),
                 },
                 Self::Create { value, data } => Self::Create {
                     value: value.transform_data(transform),
-                    data:  data.transform_data(transform),
+                    data: data.transform_data(transform),
                 },
                 Self::Create2 { value, data, salt } => Self::Create2 {
                     value: value.transform_data(transform),
-                    data:  data.transform_data(transform),
-                    salt:  salt.transform_data(transform),
+                    data: data.transform_data(transform),
+                    salt: salt.transform_data(transform),
                 },
                 Self::SelfDestruct { target } => Self::SelfDestruct {
                     target: target.transform_data(transform),
                 },
                 Self::LessThan { left, right } => Self::LessThan {
-                    left:  left.transform_data(transform),
+                    left: left.transform_data(transform),
                     right: right.transform_data(transform),
                 },
                 Self::GreaterThan { left, right } => Self::GreaterThan {
-                    left:  left.transform_data(transform),
+                    left: left.transform_data(transform),
                     right: right.transform_data(transform),
                 },
                 Self::SignedLessThan { left, right } => Self::SignedLessThan {
-                    left:  left.transform_data(transform),
+                    left: left.transform_data(transform),
                     right: right.transform_data(transform),
                 },
                 Self::SignedGreaterThan { left, right } => Self::SignedGreaterThan {
-                    left:  left.transform_data(transform),
+                    left: left.transform_data(transform),
                     right: right.transform_data(transform),
                 },
                 Self::Equals { left, right } => Self::Equals {
-                    left:  left.transform_data(transform),
+                    left: left.transform_data(transform),
                     right: right.transform_data(transform),
                 },
                 Self::IsZero { number } => Self::IsZero {
                     number: number.transform_data(transform),
                 },
                 Self::And { left, right } => Self::And {
-                    left:  left.transform_data(transform),
+                    left: left.transform_data(transform),
                     right: right.transform_data(transform),
                 },
                 Self::Or { left, right } => Self::Or {
-                    left:  left.transform_data(transform),
+                    left: left.transform_data(transform),
                     right: right.transform_data(transform),
                 },
                 Self::Xor { left, right } => Self::Xor {
-                    left:  left.transform_data(transform),
+                    left: left.transform_data(transform),
                     right: right.transform_data(transform),
                 },
                 Self::Not { value } => Self::Not {
@@ -992,14 +990,14 @@ where
                     value: value.transform_data(transform),
                 },
                 Self::CallData { id, offset, size } => Self::CallData {
-                    id:     *id,
+                    id: *id,
                     offset: offset.transform_data(transform),
-                    size:   size.transform_data(transform),
+                    size: size.transform_data(transform),
                 },
                 Self::CallDataSize => inner_self,
                 Self::CodeCopy { offset, size } => Self::CodeCopy {
                     offset: offset.transform_data(transform),
-                    size:   size.transform_data(transform),
+                    size: size.transform_data(transform),
                 },
                 Self::ExtCodeSize { address } => Self::ExtCodeSize {
                     address: address.transform_data(transform),
@@ -1010,12 +1008,12 @@ where
                     size,
                 } => Self::ExtCodeCopy {
                     address: address.transform_data(transform),
-                    offset:  offset.transform_data(transform),
-                    size:    size.transform_data(transform),
+                    offset: offset.transform_data(transform),
+                    size: size.transform_data(transform),
                 },
                 Self::ReturnData { offset, size } => Self::ReturnData {
                     offset: offset.transform_data(transform),
-                    size:   size.transform_data(transform),
+                    size: size.transform_data(transform),
                 },
                 Self::Return { data } => Self::Return {
                     data: data.transform_data(transform),
@@ -1027,14 +1025,14 @@ where
                     key: key.transform_data(transform),
                 },
                 Self::SLoad { key, value } => Self::SLoad {
-                    key:   key.transform_data(transform),
+                    key: key.transform_data(transform),
                     value: value.transform_data(transform),
                 },
                 Self::StorageSlot { key } => Self::StorageSlot {
                     key: key.transform_data(transform),
                 },
                 Self::StorageWrite { key, value } => Self::StorageWrite {
-                    key:   key.transform_data(transform),
+                    key: key.transform_data(transform),
                     value: value.transform_data(transform),
                 },
                 Self::Concat { values } => Self::Concat {
@@ -1045,12 +1043,12 @@ where
                     key,
                     projection,
                 } => Self::MappingIndex {
-                    slot:       slot.transform_data(transform),
-                    key:        key.transform_data(transform),
+                    slot: slot.transform_data(transform),
+                    key: key.transform_data(transform),
                     projection: *projection,
                 },
                 Self::DynamicArrayIndex { slot, index } => Self::DynamicArrayIndex {
-                    slot:  slot.transform_data(transform),
+                    slot: slot.transform_data(transform),
                     index: index.transform_data(transform),
                 },
                 Self::SubWord {
@@ -1058,13 +1056,13 @@ where
                     offset,
                     size,
                 } => Self::SubWord {
-                    value:  value.transform_data(transform),
+                    value: value.transform_data(transform),
                     offset: *offset,
-                    size:   *size,
+                    size: *size,
                 },
                 Self::Shifted { offset, value } => Self::Shifted {
                     offset: *offset,
-                    value:  value.transform_data(transform),
+                    value: value.transform_data(transform),
                 },
                 Self::Packed { elements } => Self::Packed {
                     elements: elements.iter().map(|elem| elem.transform(transform)).collect(),
@@ -1552,8 +1550,8 @@ where
         let new_data = self.value.transform_data(transform);
         Self {
             offset: self.offset,
-            size:   self.size,
-            value:  new_data,
+            size: self.size,
+            value: new_data,
         }
     }
 }
@@ -2065,7 +2063,7 @@ mod test {
         let inner_add = RSV::new(
             2,
             RSVD::Add {
-                left:  inner_add_left,
+                left: inner_add_left,
                 right: inner_add_right,
             },
             Provenance::Synthetic,
@@ -2076,7 +2074,7 @@ mod test {
         let outer_add = RSV::new(
             2,
             RSVD::Add {
-                left:  outer_add_left,
+                left: outer_add_left,
                 right: inner_add,
             },
             Provenance::Synthetic,
@@ -2100,14 +2098,14 @@ mod test {
         let add = RSV::new_synthetic(
             3,
             RSVD::Add {
-                left:  value_1.clone(),
+                left: value_1.clone(),
                 right: value_2.clone(),
             },
         );
         let mul = RSV::new_synthetic(
             4,
             RSVD::Multiply {
-                left:  add.clone(),
+                left: add.clone(),
                 right: value_3.clone(),
             },
         );
@@ -2129,14 +2127,14 @@ mod test {
         let add = RSV::new_synthetic(
             3,
             RSVD::Add {
-                left:  value_1.clone(),
+                left: value_1.clone(),
                 right: value_2.clone(),
             },
         );
         let mul = RSV::new_synthetic(
             4,
             RSVD::Multiply {
-                left:  add.clone(),
+                left: add.clone(),
                 right: value_3.clone(),
             },
         );
@@ -2166,14 +2164,14 @@ mod test {
         let add = RSV::new_synthetic(
             3,
             RSVD::Add {
-                left:  value_1.clone(),
+                left: value_1.clone(),
                 right: value_2.clone(),
             },
         );
         let mul = RSV::new_synthetic(
             4,
             RSVD::Multiply {
-                left:  add.clone(),
+                left: add.clone(),
                 right: value_3.clone(),
             },
         );

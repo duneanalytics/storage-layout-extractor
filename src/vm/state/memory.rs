@@ -502,21 +502,21 @@ mod test {
         let sum = RSV::new_synthetic(
             2,
             RSVD::Add {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
         let prod = RSV::new_synthetic(
             3,
             RSVD::Multiply {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
         let sub = RSV::new_synthetic(
             4,
             RSVD::Subtract {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
@@ -524,7 +524,7 @@ mod test {
             5,
             RSVD::Divide {
                 dividend: left,
-                divisor:  right,
+                divisor: right,
             },
         );
 

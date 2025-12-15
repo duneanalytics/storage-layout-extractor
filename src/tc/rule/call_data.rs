@@ -104,11 +104,9 @@ mod test {
         assert!(state.inferences(offset_tv).is_empty());
         assert!(state.inferences(size_tv).is_empty());
         assert_eq!(state.inferences(call_data_tv).len(), 1);
-        assert!(
-            state
-                .inferences(call_data_tv)
-                .contains(&TE::bytes(Some(16 * BYTE_SIZE_BITS)))
-        );
+        assert!(state
+            .inferences(call_data_tv)
+            .contains(&TE::bytes(Some(16 * BYTE_SIZE_BITS))));
 
         Ok(())
     }
@@ -124,7 +122,7 @@ mod test {
         let size = RSV::new_synthetic(
             3,
             RSVD::Add {
-                left:  left_val.clone(),
+                left: left_val.clone(),
                 right: right_val.clone(),
             },
         );
@@ -155,11 +153,9 @@ mod test {
         assert!(state.inferences(right_val_tv).is_empty());
         assert!(state.inferences(size_tv).is_empty());
         assert_eq!(state.inferences(call_data_tv).len(), 1);
-        assert!(
-            state
-                .inferences(call_data_tv)
-                .contains(&TE::bytes(Some(16 * BYTE_SIZE_BITS)))
-        );
+        assert!(state
+            .inferences(call_data_tv)
+            .contains(&TE::bytes(Some(16 * BYTE_SIZE_BITS))));
 
         Ok(())
     }

@@ -17,8 +17,7 @@ use storage_layout_extractor::{
         contract::Contract,
         InitialExtractor,
     },
-    tc,
-    vm,
+    tc, vm,
     watchdog::{DynWatchdog, LazyWatchdog},
 };
 

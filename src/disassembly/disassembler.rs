@@ -11,24 +11,15 @@ use std::rc::Rc;
 
 use crate::{
     constant::{
-        DUP_OPCODE_BASE_VALUE,
-        LOG_OPCODE_BASE_VALUE,
-        PUSH_OPCODE_BASE_VALUE,
-        PUSH_OPCODE_MAX_BYTES,
-        SWAP_OPCODE_BASE_VALUE,
+        DUP_OPCODE_BASE_VALUE, LOG_OPCODE_BASE_VALUE, PUSH_OPCODE_BASE_VALUE,
+        PUSH_OPCODE_MAX_BYTES, SWAP_OPCODE_BASE_VALUE,
     },
     error::{
         container::Locatable,
         disassembly::{Error, Result},
     },
     opcode::{
-        arithmetic as arith,
-        control,
-        environment as env,
-        logic,
-        memory as mem,
-        DynOpcode,
-        Opcode,
+        arithmetic as arith, control, environment as env, logic, memory as mem, DynOpcode, Opcode,
     },
 };
 
@@ -210,7 +201,9 @@ pub fn disassemble(bytes: &[u8]) -> Result<Vec<DynOpcode>> {
     // as invalid
     if !push_bytes.is_empty() && push_bytes.len() != push_size as usize {
         add_op(ops, control::Invalid::new(last_push));
-        push_bytes.iter().for_each(|b| add_op(ops, control::Invalid::new(*b)));
+        for b in &push_bytes {
+            add_op(ops, control::Invalid::new(*b));
+        }
     } else if push_size != 0 {
         let opcode = mem::PushN::new(push_size, push_bytes.clone())
             .map_err(|e| e.locate(last_push_start))?;

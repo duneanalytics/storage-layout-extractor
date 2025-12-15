@@ -180,32 +180,36 @@ pub fn collect_vars_in_tree_of(
 
     while let Some(tv) = tyvar_queue.pop_front() {
         let inferences = state.inferences_for(tv);
-        inferences.iter().for_each(|i| match i {
-            TE::Any | TE::Word { .. } | TE::Conflict { .. } | TE::Bytes => (),
-            TE::Equal { id } => {
-                if !seen.contains(id) {
-                    tyvar_queue.push_back(*id);
+        for i in &inferences {
+            match i {
+                TE::Any | TE::Word { .. } | TE::Conflict { .. } | TE::Bytes => (),
+                TE::Equal { id } => {
+                    if !seen.contains(id) {
+                        tyvar_queue.push_back(*id);
+                    }
+                }
+                TE::FixedArray { element, .. } | TE::DynamicArray { element } => {
+                    if !seen.contains(element) {
+                        tyvar_queue.push_back(*element);
+                    }
+                }
+                TE::Mapping { key, value } => {
+                    if !seen.contains(key) {
+                        tyvar_queue.push_back(*key);
+                    }
+                    if !seen.contains(value) {
+                        tyvar_queue.push_back(*value);
+                    }
+                }
+                TE::Packed { types, .. } => {
+                    for s in types {
+                        if !seen.contains(&s.typ) {
+                            tyvar_queue.push_back(s.typ);
+                        }
+                    }
                 }
             }
-            TE::FixedArray { element, .. } | TE::DynamicArray { element } => {
-                if !seen.contains(element) {
-                    tyvar_queue.push_back(*element);
-                }
-            }
-            TE::Mapping { key, value } => {
-                if !seen.contains(key) {
-                    tyvar_queue.push_back(*key);
-                }
-                if !seen.contains(value) {
-                    tyvar_queue.push_back(*value);
-                }
-            }
-            TE::Packed { types, .. } => types.iter().for_each(|s| {
-                if !seen.contains(&s.typ) {
-                    tyvar_queue.push_back(s.typ);
-                }
-            }),
-        });
+        }
 
         seen.insert(tv);
     }

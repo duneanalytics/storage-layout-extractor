@@ -232,7 +232,7 @@ impl Opcode for JumpI {
                 // If we get an error here, we need to change what we do based on whether it is
                 // in this thread or the target thread.
                 let result = match payload.payload {
-                    execution::Error::NoConcreteJumpDestination { .. }
+                    execution::Error::NoConcreteJumpDestination
                     | execution::Error::NonExistentJumpTarget { .. }
                     | execution::Error::InvalidJumpTarget { .. }
                     | execution::Error::InvalidOffsetForJump { .. } => Ok(payload),
@@ -384,7 +384,7 @@ fn store_return_data(
             let dest_offset = vm.build().symbolic_exec(
                 instruction_pointer,
                 RSVD::Add {
-                    left:  ret_offset.constant_fold(),
+                    left: ret_offset.constant_fold(),
                     right: to_add_to_offset,
                 },
             );
@@ -396,7 +396,7 @@ fn store_return_data(
                 instruction_pointer,
                 RSVD::ReturnData {
                     offset: src_offset,
-                    size:   num_32.clone(),
+                    size: num_32.clone(),
                 },
             );
             let memory = vm.state()?.memory_mut();
@@ -898,9 +898,10 @@ impl Opcode for Nop {
 #[cfg(test)]
 mod test {
     use crate::{
+        bytecode,
         disassembly::InstructionStream,
         error::execution,
-        opcode::{control, macros::bytecode, test_util as util, Opcode},
+        opcode::{control, test_util as util, Opcode},
         vm::value::{known::KnownWord, Provenance, RSV, RSVD},
     };
 

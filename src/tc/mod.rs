@@ -224,14 +224,14 @@ impl TypeChecker {
             let ty_var = self.state.var_unchecked(&slot);
             let TCSVD::StorageSlot { key } = slot.data() else {
                 Err(Error::InvalidTree {
-                    value:  slot.clone(),
+                    value: slot.clone(),
                     reason: "Failed to destructure supposedly known structure".into(),
                 }
                 .locate(slot.instruction_pointer()))?
             };
             let TCSVD::KnownData { value: index } = key.data() else {
                 Err(Error::InvalidTree {
-                    value:  key.clone(),
+                    value: key.clone(),
                     reason: "Failed to destructure supposedly known structure".into(),
                 }
                 .locate(slot.instruction_pointer()))?
@@ -304,7 +304,7 @@ impl TypeChecker {
                 WordUse::Bool => {
                     if width != usage.size() {
                         return Err(Error::InvalidInference {
-                            value:  type_expr,
+                            value: type_expr,
                             reason: "Bool inferred with incorrect width".into(),
                         }
                         .locate(location)
@@ -315,7 +315,7 @@ impl TypeChecker {
                 WordUse::Address => {
                     if width != usage.size() {
                         return Err(Error::InvalidInference {
-                            value:  type_expr,
+                            value: type_expr,
                             reason: "Address inferred with incorrect width".into(),
                         }
                         .locate(location)
@@ -326,7 +326,7 @@ impl TypeChecker {
                 WordUse::Selector => {
                     if width != usage.size() {
                         return Err(Error::InvalidInference {
-                            value:  type_expr,
+                            value: type_expr,
                             reason: "Selector inferred with incorrect width".into(),
                         }
                         .locate(location)
@@ -337,7 +337,7 @@ impl TypeChecker {
                 WordUse::Function => {
                     if width != usage.size() {
                         return Err(Error::InvalidInference {
-                            value:  type_expr,
+                            value: type_expr,
                             reason: "Function inferred with incorrect width".into(),
                         }
                         .locate(location)
@@ -353,7 +353,7 @@ impl TypeChecker {
                     .expect_type("Fixed array element resolved to multiple types");
                 AbiType::Array {
                     size: U256Wrapper(length),
-                    tp:   Box::new(tp),
+                    tp: Box::new(tp),
                 }
                 .into()
             }
@@ -365,7 +365,7 @@ impl TypeChecker {
                     .abi_type_for_impl(value, seen_exprs, ParentType::Other)?
                     .expect_type("Mapping value resolved to multiple types");
                 AbiType::Mapping {
-                    key_type:   Box::new(key_tp),
+                    key_type: Box::new(key_tp),
                     value_type: Box::new(val_tp),
                 }
                 .into()
@@ -428,7 +428,7 @@ impl TypeChecker {
             }
             TE::Equal { id } => {
                 return Err(Error::InvalidInference {
-                    value:  TE::Equal { id },
+                    value: TE::Equal { id },
                     reason: "Equalities cannot be converted into ABI types".into(),
                 }
                 .locate(location)
@@ -471,7 +471,7 @@ impl TypeChecker {
                         let location =
                             self.state.value_unchecked(type_variable).instruction_pointer();
                         Err(Error::UnificationIncomplete {
-                            var:        type_variable,
+                            var: type_variable,
                             inferences: inferences.iter().cloned().collect(),
                         }
                         .locate(location))?
@@ -682,7 +682,7 @@ pub mod test {
         let add = RSV::new(
             2,
             RSVD::Add {
-                left:  v_2.clone(),
+                left: v_2.clone(),
                 right: v_3.clone(),
             },
             Provenance::Synthetic,
@@ -715,7 +715,7 @@ pub mod test {
         let store = RSV::new(
             6,
             RSVD::StorageWrite {
-                key:   sha3.clone(),
+                key: sha3.clone(),
                 value: add.clone(),
             },
             Provenance::Synthetic,
@@ -739,8 +739,8 @@ pub mod test {
         let c_1_mapping = RSV::new(
             0,
             RSVD::MappingIndex {
-                key:        v_1.clone(),
-                slot:       c_1_slot.clone(),
+                key: v_1.clone(),
+                slot: c_1_slot.clone(),
                 projection: None,
             },
             Provenance::Synthetic,
@@ -757,7 +757,7 @@ pub mod test {
         let processed_store = RSV::new(
             0,
             RSVD::StorageWrite {
-                key:   store_slot.clone(),
+                key: store_slot.clone(),
                 value: add.clone(),
             },
             Provenance::Synthetic,
@@ -780,7 +780,7 @@ pub mod test {
         assert_eq!(
             first_slot.typ,
             AbiType::Mapping {
-                key_type:   Box::new(AbiType::Any),
+                key_type: Box::new(AbiType::Any),
                 value_type: Box::new(AbiType::Number { size: None }),
             }
         );
@@ -796,7 +796,7 @@ pub mod test {
         let add = RSV::new(
             2,
             RSVD::Add {
-                left:  var_1.clone(),
+                left: var_1.clone(),
                 right: var_2.clone(),
             },
             Provenance::Synthetic,
@@ -814,8 +814,8 @@ pub mod test {
         let mapping = RSV::new(
             4,
             RSVD::MappingIndex {
-                slot:       storage_slot.clone(),
-                key:        add.clone(),
+                slot: storage_slot.clone(),
+                key: add.clone(),
                 projection: None,
             },
             Provenance::Synthetic,
@@ -853,8 +853,8 @@ pub mod test {
             ExecutionResult {
                 instructions: InstructionStream::try_from(bytecode![Invalid::default()].as_slice())
                     .expect("Cannot actually panic due to statically-known bytecode"),
-                states:       Vec::new(),
-                errors:       execution::Errors::new(),
+                states: Vec::new(),
+                errors: execution::Errors::new(),
             }
         }
 
@@ -863,13 +863,15 @@ pub mod test {
         #[must_use]
         pub fn execution_result_with_values(values: Vec<RuntimeBoxedVal>) -> ExecutionResult {
             let mut state_with_values = VMState::new(0, 0, Config::default());
-            values.into_iter().for_each(|v| state_with_values.record_value(v));
+            for v in values {
+                state_with_values.record_value(v);
+            }
 
             ExecutionResult {
                 instructions: InstructionStream::try_from(bytecode![Invalid::default()].as_slice())
                     .expect("Cannot actually panic due to statically-known bytecode"),
-                states:       vec![state_with_values],
-                errors:       execution::Errors::new(),
+                states: vec![state_with_values],
+                errors: execution::Errors::new(),
             }
         }
     }

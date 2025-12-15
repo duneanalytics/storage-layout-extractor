@@ -9,12 +9,9 @@ use std::collections::VecDeque;
 
 use crate::{
     constant::{
-        BLOCK_GAS_LIMIT,
-        DEFAULT_CONDITIONAL_JUMP_PER_TARGET_FORK_LIMIT,
-        DEFAULT_ITERATIONS_PER_OPCODE,
-        DEFAULT_MEMORY_SINGLE_OPERATION_MAX_BYTES,
-        DEFAULT_PERMISSIVE_ERRORS_ENABLED,
-        DEFAULT_VALUE_SIZE_LIMIT,
+        BLOCK_GAS_LIMIT, DEFAULT_CONDITIONAL_JUMP_PER_TARGET_FORK_LIMIT,
+        DEFAULT_ITERATIONS_PER_OPCODE, DEFAULT_MEMORY_SINGLE_OPERATION_MAX_BYTES,
+        DEFAULT_PERMISSIVE_ERRORS_ENABLED, DEFAULT_VALUE_SIZE_LIMIT,
     },
     disassembly::{ExecutionThread, InstructionStream},
     error::{
@@ -169,7 +166,7 @@ impl VM {
 
             let result = instruction.execute(self);
             match result {
-                Ok(_) => {
+                Ok(()) => {
                     self.current_thread_mut()
                         .expect(
                             "We already know a thread is present as we executed an instruction \
@@ -516,8 +513,8 @@ impl VM {
     pub fn consume(self) -> ExecutionResult {
         ExecutionResult {
             instructions: self.instructions,
-            states:       self.stored_states,
-            errors:       self.errors,
+            states: self.stored_states,
+            errors: self.errors,
         }
     }
 }
@@ -895,14 +892,14 @@ mod test {
             error_container.payloads()[0],
             LocatedError {
                 location: 4,
-                payload:  Error::InvalidJumpTarget { offset: 11 },
+                payload: Error::InvalidJumpTarget { offset: 11 },
             }
         );
         assert_eq!(
             error_container.payloads()[1],
             LocatedError {
                 location: 5,
-                payload:  Error::NoSuchStackFrame { depth: 0 },
+                payload: Error::NoSuchStackFrame { depth: 0 },
             }
         );
 

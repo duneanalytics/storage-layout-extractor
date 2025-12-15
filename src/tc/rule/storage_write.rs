@@ -63,7 +63,7 @@ mod test {
         let write = RSV::new_synthetic(
             2,
             RSVD::StorageWrite {
-                key:   input_key.clone(),
+                key: input_key.clone(),
                 value: input_value.clone(),
             },
         );

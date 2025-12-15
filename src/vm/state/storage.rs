@@ -110,7 +110,7 @@ impl Storage {
                 most_recent.data().clone()
             } else {
                 RSVD::SLoad {
-                    key:   key.clone(),
+                    key: key.clone(),
                     value: most_recent.clone(),
                 }
             },
@@ -187,7 +187,7 @@ impl Storage {
                     RSV::new(
                         v.instruction_pointer(),
                         RSVD::StorageWrite {
-                            key:   k.clone(),
+                            key: k.clone(),
                             value: v,
                         },
                         provenance,

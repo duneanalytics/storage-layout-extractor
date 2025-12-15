@@ -194,10 +194,10 @@ pub type StackResult<T> = std::result::Result<T, Error>;
 #[derive(Debug)]
 pub struct LocatedStackHandle<'a> {
     instruction_pointer: u32,
-    stack:               &'a mut Stack,
+    stack: &'a mut Stack,
 }
 
-impl<'a> LocatedStackHandle<'a> {
+impl LocatedStackHandle<'_> {
     /// Pushes the provided value onto the top of the stack.
     ///
     /// # Errors

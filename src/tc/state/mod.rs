@@ -1,10 +1,7 @@
 //! This module contains the definition of the type checker state and other
 //! supporting types.
 
-use std::{
-    array,
-    collections::{HashMap, HashSet},
-};
+use std::{array, collections::HashMap};
 
 use type_variable::{TypeVariable, TypeVariableSource};
 
@@ -98,7 +95,7 @@ impl TypeCheckerState {
 
         // Register the result
         self.expressions.entry(new_tv).or_insert(value_for_var);
-        self.inferences.entry(new_tv).or_insert(HashSet::new());
+        self.inferences.entry(new_tv).or_default();
 
         // Return the newly-allocated type variable
         new_tv
@@ -149,39 +146,39 @@ impl TypeCheckerState {
             RSVD::Value { id } => TCSVD::Value { id },
             RSVD::KnownData { value } => TCSVD::KnownData { value },
             RSVD::Add { left, right } => TCSVD::Add {
-                left:  self.register_internal(left),
+                left: self.register_internal(left),
                 right: self.register_internal(right),
             },
             RSVD::Multiply { left, right } => TCSVD::Multiply {
-                left:  self.register_internal(left),
+                left: self.register_internal(left),
                 right: self.register_internal(right),
             },
             RSVD::Subtract { left, right } => TCSVD::Subtract {
-                left:  self.register_internal(left),
+                left: self.register_internal(left),
                 right: self.register_internal(right),
             },
             RSVD::Divide { dividend, divisor } => TCSVD::Divide {
                 dividend: self.register_internal(dividend),
-                divisor:  self.register_internal(divisor),
+                divisor: self.register_internal(divisor),
             },
             RSVD::SignedDivide { dividend, divisor } => TCSVD::SignedDivide {
                 dividend: self.register_internal(dividend),
-                divisor:  self.register_internal(divisor),
+                divisor: self.register_internal(divisor),
             },
             RSVD::Modulo { dividend, divisor } => TCSVD::Modulo {
                 dividend: self.register_internal(dividend),
-                divisor:  self.register_internal(divisor),
+                divisor: self.register_internal(divisor),
             },
             RSVD::SignedModulo { dividend, divisor } => TCSVD::SignedModulo {
                 dividend: self.register_internal(dividend),
-                divisor:  self.register_internal(divisor),
+                divisor: self.register_internal(divisor),
             },
             RSVD::Exp { value, exponent } => TCSVD::Exp {
-                value:    self.register_internal(value),
+                value: self.register_internal(value),
                 exponent: self.register_internal(exponent),
             },
             RSVD::SignExtend { size, value } => TCSVD::SignExtend {
-                size:  self.register_internal(size),
+                size: self.register_internal(size),
                 value: self.register_internal(value),
             },
             RSVD::CallWithValue {
@@ -192,12 +189,12 @@ impl TypeCheckerState {
                 ret_offset,
                 ret_size,
             } => TCSVD::CallWithValue {
-                gas:           self.register_internal(gas),
-                address:       self.register_internal(address),
-                value:         self.register_internal(value),
+                gas: self.register_internal(gas),
+                address: self.register_internal(address),
+                value: self.register_internal(value),
                 argument_data: self.register_internal(argument_data),
-                ret_offset:    self.register_internal(ret_offset),
-                ret_size:      self.register_internal(ret_size),
+                ret_offset: self.register_internal(ret_offset),
+                ret_size: self.register_internal(ret_size),
             },
             RSVD::CallWithoutValue {
                 gas,
@@ -206,11 +203,11 @@ impl TypeCheckerState {
                 ret_offset,
                 ret_size,
             } => TCSVD::CallWithoutValue {
-                gas:           self.register_internal(gas),
-                address:       self.register_internal(address),
+                gas: self.register_internal(gas),
+                address: self.register_internal(address),
                 argument_data: self.register_internal(argument_data),
-                ret_offset:    self.register_internal(ret_offset),
-                ret_size:      self.register_internal(ret_size),
+                ret_offset: self.register_internal(ret_offset),
+                ret_size: self.register_internal(ret_size),
             },
             RSVD::Sha3 { data } => TCSVD::Sha3 {
                 data: self.register_internal(data),
@@ -239,54 +236,54 @@ impl TypeCheckerState {
             RSVD::BaseFee => TCSVD::BaseFee,
             RSVD::Gas => TCSVD::Gas,
             RSVD::Log { data, topics } => TCSVD::Log {
-                data:   self.register_internal(data),
+                data: self.register_internal(data),
                 topics: topics.into_iter().map(|t| self.register_internal(t)).collect(),
             },
             RSVD::Create { value, data } => TCSVD::Create {
                 value: self.register_internal(value),
-                data:  self.register_internal(data),
+                data: self.register_internal(data),
             },
             RSVD::Create2 { value, salt, data } => TCSVD::Create2 {
                 value: self.register_internal(value),
-                salt:  self.register_internal(salt),
-                data:  self.register_internal(data),
+                salt: self.register_internal(salt),
+                data: self.register_internal(data),
             },
             RSVD::SelfDestruct { target } => TCSVD::SelfDestruct {
                 target: self.register_internal(target),
             },
             RSVD::LessThan { left, right } => TCSVD::LessThan {
-                left:  self.register_internal(left),
+                left: self.register_internal(left),
                 right: self.register_internal(right),
             },
             RSVD::GreaterThan { left, right } => TCSVD::GreaterThan {
-                left:  self.register_internal(left),
+                left: self.register_internal(left),
                 right: self.register_internal(right),
             },
             RSVD::SignedLessThan { left, right } => TCSVD::SignedLessThan {
-                left:  self.register_internal(left),
+                left: self.register_internal(left),
                 right: self.register_internal(right),
             },
             RSVD::SignedGreaterThan { left, right } => TCSVD::SignedGreaterThan {
-                left:  self.register_internal(left),
+                left: self.register_internal(left),
                 right: self.register_internal(right),
             },
             RSVD::Equals { left, right } => TCSVD::Equals {
-                left:  self.register_internal(left),
+                left: self.register_internal(left),
                 right: self.register_internal(right),
             },
             RSVD::IsZero { number } => TCSVD::IsZero {
                 number: self.register_internal(number),
             },
             RSVD::And { left, right } => TCSVD::And {
-                left:  self.register_internal(left),
+                left: self.register_internal(left),
                 right: self.register_internal(right),
             },
             RSVD::Or { left, right } => TCSVD::Or {
-                left:  self.register_internal(left),
+                left: self.register_internal(left),
                 right: self.register_internal(right),
             },
             RSVD::Xor { left, right } => TCSVD::Xor {
-                left:  self.register_internal(left),
+                left: self.register_internal(left),
                 right: self.register_internal(right),
             },
             RSVD::Not { value } => TCSVD::Not {
@@ -312,7 +309,7 @@ impl TypeCheckerState {
             RSVD::CallDataSize => TCSVD::CallDataSize,
             RSVD::CodeCopy { offset, size } => TCSVD::CodeCopy {
                 offset: self.register_internal(offset),
-                size:   self.register_internal(size),
+                size: self.register_internal(size),
             },
             RSVD::ExtCodeSize { address } => TCSVD::ExtCodeSize {
                 address: self.register_internal(address),
@@ -323,12 +320,12 @@ impl TypeCheckerState {
                 size,
             } => TCSVD::ExtCodeCopy {
                 address: self.register_internal(address),
-                offset:  self.register_internal(offset),
-                size:    self.register_internal(size),
+                offset: self.register_internal(offset),
+                size: self.register_internal(size),
             },
             RSVD::ReturnData { offset, size } => TCSVD::ReturnData {
                 offset: self.register_internal(offset),
-                size:   self.register_internal(size),
+                size: self.register_internal(size),
             },
             RSVD::Return { data } => TCSVD::Return {
                 data: self.register_internal(data),
@@ -340,11 +337,11 @@ impl TypeCheckerState {
                 key: self.register_internal(key),
             },
             RSVD::SLoad { key, value } => TCSVD::SLoad {
-                key:   self.register_internal(key),
+                key: self.register_internal(key),
                 value: self.register_internal(value),
             },
             RSVD::StorageWrite { key, value } => TCSVD::StorageWrite {
-                key:   self.register_internal(key),
+                key: self.register_internal(key),
                 value: self.register_internal(value),
             },
             RSVD::Concat { values } => TCSVD::Concat {
@@ -360,7 +357,7 @@ impl TypeCheckerState {
                 projection,
             },
             RSVD::DynamicArrayIndex { slot, index } => TCSVD::DynamicArrayIndex {
-                slot:  self.register_internal(slot),
+                slot: self.register_internal(slot),
                 index: self.register_internal(index),
             },
             RSVD::SubWord {
@@ -394,7 +391,7 @@ impl TypeCheckerState {
 
         // Register the result
         self.expressions.entry(type_var).or_insert(new_value.clone());
-        self.inferences.entry(type_var).or_insert(HashSet::new());
+        self.inferences.entry(type_var).or_default();
 
         if is_stable {
             self.stable_types.insert(value, new_value.clone());
@@ -450,7 +447,9 @@ impl TypeCheckerState {
         expression: impl Into<TypeExpression>,
     ) {
         let expression = expression.into();
-        variables.into_iter().for_each(|v| self.infer(v, expression.clone()));
+        for v in variables {
+            self.infer(v, expression.clone());
+        }
     }
 
     /// Adds the provided `expression` to the typing expressions for the

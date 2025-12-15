@@ -128,7 +128,7 @@ impl<S: State> Extractor<S> {
     pub unsafe fn set_state<NS: State>(self, new_state: NS) -> Extractor<NS> {
         Extractor {
             contract: self.contract,
-            state:    new_state,
+            state: new_state,
         }
     }
 

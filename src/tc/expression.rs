@@ -14,10 +14,7 @@ use itertools::Itertools;
 
 use crate::{
     constant::{
-        ADDRESS_WIDTH_BITS,
-        BOOL_WIDTH_BITS,
-        BYTE_SIZE_BITS,
-        FUNCTION_WIDTH_BITS,
+        ADDRESS_WIDTH_BITS, BOOL_WIDTH_BITS, BYTE_SIZE_BITS, FUNCTION_WIDTH_BITS,
         SELECTOR_WIDTH_BITS,
     },
     tc::state::type_variable::TypeVariable,
@@ -204,7 +201,7 @@ impl TypeExpression {
 
         Self::Conflict {
             conflicts: all_conflicts,
-            reasons:   all_reasons,
+            reasons: all_reasons,
         }
     }
 
@@ -280,10 +277,11 @@ impl Display for TypeExpression {
 pub type InferenceSet = HashSet<TypeExpression>;
 
 /// A representation of the special ways in which a word could be used.
-#[derive(Copy, Clone, Debug, Eq, Hash, PartialEq)]
+#[derive(Copy, Clone, Debug, Eq, Hash, PartialEq, Default)]
 pub enum WordUse {
     /// The word is used as data (equivalent to `bytesN`) where we know nothing
     /// more about it.
+    #[default]
     Bytes,
 
     /// The word is used numerically, but is not known to be signed or unsigned.
@@ -358,12 +356,6 @@ impl WordUse {
 
             _ => return None,
         })
-    }
-}
-
-impl Default for WordUse {
-    fn default() -> Self {
-        Self::Bytes
     }
 }
 

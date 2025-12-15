@@ -80,8 +80,8 @@ mod test {
         let mapping = RSV::new_synthetic(
             3,
             RSVD::MappingIndex {
-                key:        v_1.clone(),
-                slot:       mapping_slot.clone(),
+                key: v_1.clone(),
+                slot: mapping_slot.clone(),
                 projection: None,
             },
         );

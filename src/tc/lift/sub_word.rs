@@ -281,7 +281,7 @@ mod test {
         let subtract = SV::new_synthetic(
             3,
             SVD::Subtract {
-                left:  shift,
+                left: shift,
                 right: one,
             },
         );
@@ -322,7 +322,7 @@ mod test {
         let mask = SV::new_synthetic(
             3,
             SVD::Subtract {
-                left:  shift,
+                left: shift,
                 right: one,
             },
         );
@@ -334,14 +334,14 @@ mod test {
         let mask_on_left = SV::new_synthetic(
             5,
             SVD::And {
-                left:  mask.clone(),
+                left: mask.clone(),
                 right: input_value.clone(),
             },
         );
         let mask_on_right = SV::new_synthetic(
             5,
             SVD::And {
-                left:  input_value.clone(),
+                left: input_value.clone(),
                 right: mask,
             },
         );
@@ -386,7 +386,7 @@ mod test {
         let mask = SV::new_synthetic(
             3,
             SVD::Subtract {
-                left:  shift,
+                left: shift,
                 right: one,
             },
         );
@@ -396,7 +396,7 @@ mod test {
         let mask_operation = SV::new_synthetic(
             5,
             SVD::And {
-                left:  mask.clone(),
+                left: mask.clone(),
                 right: input_value.clone(),
             },
         );
@@ -405,14 +405,14 @@ mod test {
         let recurse_on_left = SV::new_synthetic(
             6,
             SVD::And {
-                left:  mask_operation.clone(),
+                left: mask_operation.clone(),
                 right: mask.clone(),
             },
         );
         let recurse_on_right = SV::new_synthetic(
             7,
             SVD::And {
-                left:  mask,
+                left: mask,
                 right: mask_operation,
             },
         );

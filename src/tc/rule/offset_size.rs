@@ -82,7 +82,7 @@ mod test {
             2,
             RSVD::CodeCopy {
                 offset: offset.clone(),
-                size:   size.clone(),
+                size: size.clone(),
             },
         );
 
@@ -113,7 +113,7 @@ mod test {
             2,
             RSVD::ReturnData {
                 offset: offset.clone(),
-                size:   size.clone(),
+                size: size.clone(),
             },
         );
 

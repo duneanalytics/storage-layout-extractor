@@ -62,7 +62,7 @@ mod test {
             2,
             RSVD::Create {
                 value: value.clone(),
-                data:  data.clone(),
+                data: data.clone(),
             },
         );
 
@@ -94,8 +94,8 @@ mod test {
             3,
             RSVD::Create2 {
                 value: value.clone(),
-                salt:  salt.clone(),
-                data:  data.clone(),
+                salt: salt.clone(),
+                data: data.clone(),
             },
         );
 

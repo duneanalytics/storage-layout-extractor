@@ -4,11 +4,8 @@ use std::mem;
 
 use crate::{
     constant::{
-        CONTRACT_MAXIMUM_SIZE_BYTES,
-        DUP_OPCODE_BASE_VALUE,
-        PUSH_OPCODE_BASE_VALUE,
-        PUSH_OPCODE_MAX_BYTES,
-        SWAP_OPCODE_BASE_VALUE,
+        CONTRACT_MAXIMUM_SIZE_BYTES, DUP_OPCODE_BASE_VALUE, PUSH_OPCODE_BASE_VALUE,
+        PUSH_OPCODE_MAX_BYTES, SWAP_OPCODE_BASE_VALUE,
     },
     error::{container::Locatable, disassembly, execution::Error},
     opcode::{ExecuteResult, Opcode},
@@ -192,14 +189,14 @@ impl Opcode for CallDataCopy {
                 let dest_offset = vm.build().symbolic_exec(
                     instruction_pointer,
                     RSVD::Add {
-                        left:  dest_offset.clone(),
+                        left: dest_offset.clone(),
                         right: to_add_to_offset.clone(),
                     },
                 );
                 let src_offset = vm.build().symbolic_exec(
                     instruction_pointer,
                     RSVD::Add {
-                        left:  offset.clone(),
+                        left: offset.clone(),
                         right: to_add_to_offset,
                     },
                 );
@@ -348,14 +345,14 @@ impl Opcode for CodeCopy {
                 let dest_offset = vm.build().symbolic_exec(
                     instruction_pointer,
                     RSVD::Add {
-                        left:  dest_offset.clone(),
+                        left: dest_offset.clone(),
                         right: to_add_to_offset.clone(),
                     },
                 );
                 let src_offset = vm.build().symbolic_exec(
                     instruction_pointer,
                     RSVD::Add {
-                        left:  offset.clone(),
+                        left: offset.clone(),
                         right: to_add_to_offset,
                     },
                 );
@@ -363,7 +360,7 @@ impl Opcode for CodeCopy {
                     instruction_pointer,
                     RSVD::CodeCopy {
                         offset: src_offset,
-                        size:   num_32.clone(),
+                        size: num_32.clone(),
                     },
                 );
                 let memory = vm.state()?.memory_mut();
@@ -517,14 +514,14 @@ impl Opcode for ExtCodeCopy {
                 let dest_offset = vm.build().symbolic_exec(
                     instruction_pointer,
                     RSVD::Add {
-                        left:  dest_offset.clone(),
+                        left: dest_offset.clone(),
                         right: to_add_to_offset.clone(),
                     },
                 );
                 let src_offset = vm.build().symbolic_exec(
                     instruction_pointer,
                     RSVD::Add {
-                        left:  offset.clone(),
+                        left: offset.clone(),
                         right: to_add_to_offset,
                     },
                 );
@@ -532,8 +529,8 @@ impl Opcode for ExtCodeCopy {
                     instruction_pointer,
                     RSVD::ExtCodeCopy {
                         address: address.clone(),
-                        offset:  src_offset,
-                        size:    num_32.clone(),
+                        offset: src_offset,
+                        size: num_32.clone(),
                     },
                 );
                 let memory = vm.state()?.memory_mut();
@@ -684,14 +681,14 @@ impl Opcode for ReturnDataCopy {
                 let dest_offset = vm.build().symbolic_exec(
                     instruction_pointer,
                     RSVD::Add {
-                        left:  dest_offset.clone(),
+                        left: dest_offset.clone(),
                         right: to_add_to_offset.clone(),
                     },
                 );
                 let src_offset = vm.build().symbolic_exec(
                     instruction_pointer,
                     RSVD::Add {
-                        left:  offset.clone(),
+                        left: offset.clone(),
                         right: to_add_to_offset,
                     },
                 );
@@ -699,7 +696,7 @@ impl Opcode for ReturnDataCopy {
                     instruction_pointer,
                     RSVD::ReturnData {
                         offset: src_offset,
-                        size:   num_32.clone(),
+                        size: num_32.clone(),
                     },
                 );
                 let memory = vm.state()?.memory_mut();
@@ -1180,7 +1177,7 @@ impl Opcode for Push0 {
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct PushN {
     byte_count: u8,
-    bytes:      Vec<u8>,
+    bytes: Vec<u8>,
 }
 
 impl PushN {
@@ -1469,7 +1466,7 @@ mod test {
                 assert_eq!(offset.provenance(), Provenance::Synthetic);
             }
             _ => panic!("Invalid data"),
-        };
+        }
         assert_eq!(item.provenance(), Provenance::Execution);
 
         Ok(())
@@ -1522,7 +1519,7 @@ mod test {
                 assert_eq!(size, &input_size);
             }
             _ => panic!("Incorrect payload"),
-        };
+        }
         assert_eq!(loaded.provenance(), Provenance::Execution);
 
         Ok(())
@@ -1644,7 +1641,7 @@ mod test {
                 assert_eq!(size, &input_size);
             }
             _ => panic!("Incorrect payload"),
-        };
+        }
         assert_eq!(loaded.provenance(), Provenance::Execution);
 
         Ok(())
@@ -1927,7 +1924,7 @@ mod test {
                     assert_eq!(value, &opcode.bytes_as_word());
                 }
                 _ => panic!("Incorrect payload"),
-            };
+            }
         }
 
         Ok(())

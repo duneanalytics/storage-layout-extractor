@@ -66,9 +66,9 @@ mod test {
         let mask = RSV::new_synthetic(
             1,
             RSVD::SubWord {
-                value:  value.clone(),
+                value: value.clone(),
                 offset: 64,
-                size:   128,
+                size: 128,
             },
         );
 
@@ -84,17 +84,13 @@ mod test {
 
         // Check that we end up with the correct equations
         assert_eq!(state.inferences(value_tv).len(), 1);
-        assert!(
-            state
-                .inferences(value_tv)
-                .contains(&TE::packed_of(vec![Span::new(mask_tv, 64, 128)]))
-        );
+        assert!(state
+            .inferences(value_tv)
+            .contains(&TE::packed_of(vec![Span::new(mask_tv, 64, 128)])));
         assert_eq!(state.inferences(mask_tv).len(), 1);
-        assert!(
-            state
-                .inferences(mask_tv)
-                .contains(&TE::word(Some(128), WordUse::Bytes))
-        );
+        assert!(state
+            .inferences(mask_tv)
+            .contains(&TE::word(Some(128), WordUse::Bytes)));
 
         Ok(())
     }

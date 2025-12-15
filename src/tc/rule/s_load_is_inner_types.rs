@@ -61,7 +61,7 @@ mod test {
         let s_load = RSV::new_synthetic(
             2,
             RSVD::SLoad {
-                key:   key.clone(),
+                key: key.clone(),
                 value: value.clone(),
             },
         );

@@ -82,7 +82,7 @@ mod test {
         let add = RSV::new_synthetic(
             2,
             RSVD::Add {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
@@ -113,7 +113,7 @@ mod test {
         let mul = RSV::new_synthetic(
             2,
             RSVD::Multiply {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
@@ -144,7 +144,7 @@ mod test {
         let sub = RSV::new_synthetic(
             2,
             RSVD::Subtract {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
@@ -176,7 +176,7 @@ mod test {
             2,
             RSVD::Divide {
                 dividend: dividend.clone(),
-                divisor:  divisor.clone(),
+                divisor: divisor.clone(),
             },
         );
 
@@ -207,7 +207,7 @@ mod test {
             2,
             RSVD::SignedDivide {
                 dividend: dividend.clone(),
-                divisor:  divisor.clone(),
+                divisor: divisor.clone(),
             },
         );
 
@@ -238,7 +238,7 @@ mod test {
             2,
             RSVD::Modulo {
                 dividend: dividend.clone(),
-                divisor:  divisor.clone(),
+                divisor: divisor.clone(),
             },
         );
 
@@ -269,7 +269,7 @@ mod test {
             2,
             RSVD::SignedModulo {
                 dividend: dividend.clone(),
-                divisor:  divisor.clone(),
+                divisor: divisor.clone(),
             },
         );
 
@@ -299,7 +299,7 @@ mod test {
         let exp = RSV::new_synthetic(
             2,
             RSVD::Exp {
-                value:    value.clone(),
+                value: value.clone(),
                 exponent: exponent.clone(),
             },
         );
@@ -331,7 +331,7 @@ mod test {
             2,
             RSVD::SignExtend {
                 value: value.clone(),
-                size:  size.clone(),
+                size: size.clone(),
             },
         );
 
@@ -362,7 +362,7 @@ mod test {
             2,
             RSVD::SignExtend {
                 value: value.clone(),
-                size:  size.clone(),
+                size: size.clone(),
             },
         );
 

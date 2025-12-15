@@ -23,9 +23,9 @@ fn analyses_simple_contract() -> anyhow::Result<()> {
         0,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Bytes { length: Some(16) }),
+            key_type: Box::new(AbiType::Bytes { length: Some(16) }),
             value_type: Box::new(AbiType::Mapping {
-                key_type:   Box::new(AbiType::Bytes { length: Some(16) }),
+                key_type: Box::new(AbiType::Bytes { length: Some(16) }),
                 value_type: Box::new(AbiType::Bytes { length: Some(32) }),
             }),
         }
