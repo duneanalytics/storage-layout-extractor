@@ -52,8 +52,8 @@ impl InferenceRule for MaskedWordRule {
 mod test {
     use crate::{
         tc::{
-            expression::{Span, TE, WordUse},
-            rule::{InferenceRule, masked_word::MaskedWordRule},
+            expression::{Span, WordUse, TE},
+            rule::{masked_word::MaskedWordRule, InferenceRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},
@@ -84,17 +84,13 @@ mod test {
 
         // Check that we end up with the correct equations
         assert_eq!(state.inferences(value_tv).len(), 1);
-        assert!(
-            state
-                .inferences(value_tv)
-                .contains(&TE::packed_of(vec![Span::new(mask_tv, 64, 128)]))
-        );
+        assert!(state
+            .inferences(value_tv)
+            .contains(&TE::packed_of(vec![Span::new(mask_tv, 64, 128)])));
         assert_eq!(state.inferences(mask_tv).len(), 1);
-        assert!(
-            state
-                .inferences(mask_tv)
-                .contains(&TE::word(Some(128), WordUse::Bytes))
-        );
+        assert!(state
+            .inferences(mask_tv)
+            .contains(&TE::word(Some(128), WordUse::Bytes)));
 
         Ok(())
     }

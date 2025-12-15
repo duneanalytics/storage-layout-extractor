@@ -6,7 +6,7 @@ use itertools::Itertools;
 
 use crate::{
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{PackedSpan, RSV, RSVD, RuntimeBoxedVal},
+    vm::value::{PackedSpan, RuntimeBoxedVal, RSV, RSVD},
 };
 
 /// This pass detects and lifts expressions that represent the packing of
@@ -139,7 +139,7 @@ impl Lift for PackedEncoding {
 mod test {
     use crate::{
         tc::{
-            lift::{Lift, packed_encoding::PackedEncoding},
+            lift::{packed_encoding::PackedEncoding, Lift},
             state::TypeCheckerState,
         },
         vm::value::{PackedSpan, Provenance, RSV, RSVD},

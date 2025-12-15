@@ -65,10 +65,10 @@ mod test {
         constant::WORD_SIZE_BITS,
         tc::{
             expression::{Span, TE},
-            rule::{InferenceRule, mapping_access::MappingAccessRule},
+            rule::{mapping_access::MappingAccessRule, InferenceRule},
             state::TypeCheckerState,
         },
-        vm::value::{Provenance, RSV, RSVD, TCSVD, known::KnownWord},
+        vm::value::{known::KnownWord, Provenance, RSV, RSVD, TCSVD},
     };
 
     #[test]

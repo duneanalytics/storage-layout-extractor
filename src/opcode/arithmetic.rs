@@ -2,7 +2,7 @@
 
 use crate::{
     opcode::{ExecuteResult, Opcode},
-    vm::{VM, value::RSVD},
+    vm::{value::RSVD, VM},
 };
 
 /// The `ADD` opcode performs addition.
@@ -685,7 +685,7 @@ impl Opcode for SignExtend {
 #[cfg(test)]
 mod test {
     use crate::{
-        opcode::{Opcode, arithmetic, test_util as util},
+        opcode::{arithmetic, test_util as util, Opcode},
         vm::value::{Provenance, RSV, RSVD},
     };
 

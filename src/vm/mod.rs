@@ -22,9 +22,9 @@ use crate::{
     opcode::DynOpcode,
     vm::{
         data::JumpTargets,
-        state::{VMState, stack::LocatedStackHandle},
+        state::{stack::LocatedStackHandle, VMState},
         thread::VMThread,
-        value::{Provenance, RSV, RSVD, RuntimeBoxedVal, known::KnownWord},
+        value::{known::KnownWord, Provenance, RuntimeBoxedVal, RSV, RSVD},
     },
     watchdog::DynWatchdog,
 };

@@ -47,7 +47,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{InferenceRule, s_load_is_inner_types::SLoadIsInnerTypesRule},
+            rule::{s_load_is_inner_types::SLoadIsInnerTypesRule, InferenceRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},

@@ -1645,7 +1645,7 @@ mod test {
     use ethnum::U256;
     use uuid::Uuid;
 
-    use crate::vm::value::{Provenance, RSV, RSVD, known::KnownWord};
+    use crate::vm::value::{known::KnownWord, Provenance, RSV, RSVD};
 
     #[test]
     fn equality_ignores_instruction_pointer() {

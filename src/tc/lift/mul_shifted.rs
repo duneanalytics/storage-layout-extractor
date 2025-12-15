@@ -4,7 +4,7 @@
 use crate::{
     constant::WORD_SIZE_BITS,
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{RSVD, RuntimeBoxedVal, known::KnownWord},
+    vm::value::{known::KnownWord, RuntimeBoxedVal, RSVD},
 };
 
 /// This pass detects and lifts expressions that move values around inside a
@@ -101,10 +101,10 @@ impl Lift for MulShiftedValue {
 mod test {
     use crate::{
         tc::{
-            lift::{Lift, mul_shifted::MulShiftedValue},
+            lift::{mul_shifted::MulShiftedValue, Lift},
             state::TypeCheckerState,
         },
-        vm::value::{Provenance, SV, SVD, known::KnownWord},
+        vm::value::{known::KnownWord, Provenance, SV, SVD},
     };
 
     #[test]

@@ -53,7 +53,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{InferenceRule, bit_shifts::BitShiftRule},
+            rule::{bit_shifts::BitShiftRule, InferenceRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},

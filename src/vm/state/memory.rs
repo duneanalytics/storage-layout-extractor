@@ -4,7 +4,7 @@ use std::{collections::HashMap, hash::Hash};
 
 use crate::{
     constant::WORD_SIZE_BITS,
-    vm::value::{Provenance, RSV, RSVD, RuntimeBoxedVal, known::KnownWord},
+    vm::value::{known::KnownWord, Provenance, RuntimeBoxedVal, RSV, RSVD},
 };
 
 /// A representation of the transient memory of the symbolic virtual machine.
@@ -327,7 +327,7 @@ mod test {
         constant::DEFAULT_MEMORY_SINGLE_OPERATION_MAX_BYTES,
         vm::{
             state::memory::{MemStoreSize, Memory},
-            value::{Provenance, RSV, RSVD, RuntimeBoxedVal, known::KnownWord},
+            value::{known::KnownWord, Provenance, RuntimeBoxedVal, RSV, RSVD},
         },
     };
 

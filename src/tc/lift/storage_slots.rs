@@ -3,7 +3,7 @@
 
 use crate::{
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{RSV, RSVD, RuntimeBoxedVal},
+    vm::value::{RuntimeBoxedVal, RSV, RSVD},
 };
 
 /// This pass detects and wraps expressions that access constant storage slots
@@ -105,10 +105,10 @@ impl Lift for StorageSlots {
 mod test {
     use crate::{
         tc::{
-            lift::{Lift, storage_slots::StorageSlots},
+            lift::{storage_slots::StorageSlots, Lift},
             state::TypeCheckerState,
         },
-        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
+        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
     };
 
     #[test]

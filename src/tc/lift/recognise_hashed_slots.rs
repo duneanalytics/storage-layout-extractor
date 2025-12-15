@@ -10,7 +10,7 @@ use sha3::{Digest, Keccak256};
 
 use crate::{
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{RSV, RSVD, RuntimeBoxedVal, known::KnownWord},
+    vm::value::{known::KnownWord, RuntimeBoxedVal, RSV, RSVD},
 };
 
 /// The number of storage indices for which hashes will be generated (and hence
@@ -116,10 +116,10 @@ impl Lift for StorageSlotHashes {
 mod test {
     use crate::{
         tc::{
-            lift::{Lift, recognise_hashed_slots::StorageSlotHashes},
+            lift::{recognise_hashed_slots::StorageSlotHashes, Lift},
             state::TypeCheckerState,
         },
-        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
+        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
     };
 
     #[test]

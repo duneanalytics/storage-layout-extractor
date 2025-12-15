@@ -7,10 +7,10 @@ use type_variable::{TypeVariable, TypeVariableSource};
 
 use crate::{
     tc::{
-        expression::{InferenceSet, TE, TypeExpression},
+        expression::{InferenceSet, TypeExpression, TE},
         unification::UnificationForest,
     },
-    vm::value::{PackedSpan, Provenance, RSVD, RuntimeBoxedVal, TCBoxedVal, TCSV, TCSVD},
+    vm::value::{PackedSpan, Provenance, RuntimeBoxedVal, TCBoxedVal, RSVD, TCSV, TCSVD},
 };
 
 pub mod type_variable;
@@ -684,7 +684,7 @@ mod test {
 
     use crate::{
         tc::{
-            expression::{TE, TypeExpression},
+            expression::{TypeExpression, TE},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV},

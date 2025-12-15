@@ -7,7 +7,6 @@ use itertools::Itertools;
 use state::type_variable::TypeVariable;
 
 use crate::{
-    StorageLayout,
     constant::BYTE_SIZE_BITS,
     error::{
         container::Locatable,
@@ -15,17 +14,18 @@ use crate::{
     },
     tc::{
         abi::{AbiType, StructElement},
-        expression::{Span, TE, TypeExpression, WordUse},
+        expression::{Span, TypeExpression, WordUse, TE},
         lift::LiftingPasses,
         rule::InferenceRules,
         state::TypeCheckerState,
     },
     utility::U256Wrapper,
     vm::{
-        ExecutionResult,
         value::{RuntimeBoxedVal, TCBoxedVal, TCSVD},
+        ExecutionResult,
     },
     watchdog::DynWatchdog,
+    StorageLayout,
 };
 
 pub mod abi;
@@ -668,9 +668,9 @@ pub mod test {
     use std::collections::VecDeque;
 
     use crate::{
-        tc::{Config, TypeChecker, abi::AbiType},
+        tc::{abi::AbiType, Config, TypeChecker},
         utility::U256W,
-        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
+        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
         watchdog::LazyWatchdog,
     };
 
@@ -844,7 +844,7 @@ pub mod test {
             disassembly::InstructionStream,
             error::execution,
             opcode::control::Invalid,
-            vm::{Config, ExecutionResult, state::VMState, value::RuntimeBoxedVal},
+            vm::{state::VMState, value::RuntimeBoxedVal, Config, ExecutionResult},
         };
 
         /// Creates a default execution result.

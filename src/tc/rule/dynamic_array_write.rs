@@ -58,7 +58,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{InferenceRule, dynamic_array_write::DynamicArrayWriteRule},
+            rule::{dynamic_array_write::DynamicArrayWriteRule, InferenceRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},

@@ -2,10 +2,10 @@
 
 use crate::{
     error::{container::Locatable, execution, execution::Error},
-    opcode::{ExecuteResult, Opcode, util},
+    opcode::{util, ExecuteResult, Opcode},
     vm::{
+        value::{known::KnownWord, Provenance, RuntimeBoxedVal, RSVD},
         VM,
-        value::{Provenance, RSVD, RuntimeBoxedVal, known::KnownWord},
     },
 };
 
@@ -901,8 +901,8 @@ mod test {
         bytecode,
         disassembly::InstructionStream,
         error::execution,
-        opcode::{Opcode, control, test_util as util},
-        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
+        opcode::{control, test_util as util, Opcode},
+        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
     };
 
     #[test]

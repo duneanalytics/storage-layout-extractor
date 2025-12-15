@@ -6,8 +6,8 @@ use storage_layout_extractor as sle;
 use storage_layout_extractor::{
     extractor::{
         chain::{
-            Chain,
             version::{ChainVersion, EthereumVersion},
+            Chain,
         },
         contract::Contract,
     },

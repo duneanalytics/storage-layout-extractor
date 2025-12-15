@@ -58,7 +58,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{InferenceRule, boolean_operations::BooleanOpsRule},
+            rule::{boolean_operations::BooleanOpsRule, InferenceRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},

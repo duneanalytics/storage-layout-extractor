@@ -3,7 +3,7 @@
 
 use crate::{
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{RSVD, RuntimeBoxedVal},
+    vm::value::{RuntimeBoxedVal, RSVD},
 };
 
 /// This pass detects and folds expressions that access values in mappings that
@@ -59,10 +59,10 @@ impl Lift for MappingOffset {
 mod test {
     use crate::{
         tc::{
-            lift::{Lift, mapping_offset::MappingOffset},
+            lift::{mapping_offset::MappingOffset, Lift},
             state::TypeCheckerState,
         },
-        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
+        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
     };
 
     #[test]

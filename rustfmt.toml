@@ -5,13 +5,11 @@
 
 # High-level configuration, telling rustfmt which featureset to use.
 edition = "2021"
-version = "Two"
 
 # Configuration controlling general code style.
 brace_style = "SameLineWhere"
 chain_width = 70
 combine_control_expr = true
-condense_wildcard_suffixes = true
 control_brace_style = "AlwaysSameLine"
 empty_item_single_line = true
 enum_discrim_align_threshold = 20
@@ -19,8 +17,6 @@ fn_single_line = false
 force_multiline_blocks = false
 format_strings = true
 hex_literal_case = "Lower"
-indent_style = "Block"
-inline_attribute_width = 0
 match_arm_blocks = true
 reorder_impl_items = true
 single_line_let_else_max_width = 70
@@ -53,4 +49,3 @@ comment_width = 80
 format_code_in_doc_comments = true
 normalize_comments = true
 normalize_doc_attributes = true
-wrap_comments = true

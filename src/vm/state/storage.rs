@@ -3,7 +3,7 @@
 
 use std::collections::HashMap;
 
-use crate::vm::value::{Provenance, RSV, RSVD, RuntimeBoxedVal};
+use crate::vm::value::{Provenance, RuntimeBoxedVal, RSV, RSVD};
 
 /// A representation of the persistent storage of the symbolic virtual machine.
 ///
@@ -210,7 +210,7 @@ impl Default for Storage {
 mod test {
     use crate::vm::{
         state::storage::Storage,
-        value::{Provenance, RSV, RSVD, RuntimeBoxedVal, known::KnownWord},
+        value::{known::KnownWord, Provenance, RuntimeBoxedVal, RSV, RSVD},
     };
 
     /// Creates a new synthetic value for testing purposes.

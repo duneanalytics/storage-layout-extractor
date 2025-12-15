@@ -16,8 +16,8 @@ use crate::{
         unification::{Error, Result},
     },
     tc::{
-        expression::{InferenceSet, Span, TE, TypeExpression, WordUse},
-        state::{TypeCheckerState, type_variable::TypeVariable},
+        expression::{InferenceSet, Span, TypeExpression, WordUse, TE},
+        state::{type_variable::TypeVariable, TypeCheckerState},
     },
     watchdog::DynWatchdog,
 };
@@ -660,7 +660,7 @@ mod test {
     use crate::{
         constant::ADDRESS_WIDTH_BITS,
         tc::{
-            expression::{Span, TE, WordUse},
+            expression::{Span, WordUse, TE},
             state::TypeCheckerState,
             unification::{merge, unify},
         },

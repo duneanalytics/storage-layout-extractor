@@ -33,7 +33,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{InferenceRule, storage_key::StorageKeyRule},
+            rule::{storage_key::StorageKeyRule, InferenceRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},

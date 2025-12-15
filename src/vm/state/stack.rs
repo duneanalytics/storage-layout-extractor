@@ -257,7 +257,7 @@ mod test {
         constant::MAXIMUM_STACK_DEPTH,
         vm::{
             state::stack::Stack,
-            value::{Provenance, RSV, RuntimeBoxedVal},
+            value::{Provenance, RuntimeBoxedVal, RSV},
         },
     };
 

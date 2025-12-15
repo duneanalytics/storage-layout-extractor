@@ -5,8 +5,8 @@ use crate::{
     error::disassembly,
     opcode::{ExecuteResult, Opcode},
     vm::{
+        value::{RuntimeBoxedVal, RSVD},
         VM,
-        value::{RSVD, RuntimeBoxedVal},
     },
 };
 
@@ -1266,8 +1266,8 @@ impl Opcode for SelfDestruct {
 #[cfg(test)]
 mod test {
     use crate::{
-        opcode::{Opcode, environment, test_util as util},
-        vm::value::{Provenance, RSV, RSVD, RuntimeBoxedVal},
+        opcode::{environment, test_util as util, Opcode},
+        vm::value::{Provenance, RuntimeBoxedVal, RSV, RSVD},
     };
 
     #[test]

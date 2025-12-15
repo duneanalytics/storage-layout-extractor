@@ -8,7 +8,7 @@ use sha3::{Digest, Keccak256};
 use crate::{
     constant::SOLIDITY_STRING_POINTER,
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{RSV, RSVD, RuntimeBoxedVal, known::KnownWord},
+    vm::value::{known::KnownWord, RuntimeBoxedVal, RSV, RSVD},
 };
 
 /// This pass detects and folds expressions that access slots constructed using
@@ -241,10 +241,10 @@ mod test {
 
     use crate::{
         tc::{
-            lift::{Lift, proxy_slots::ProxySlots},
+            lift::{proxy_slots::ProxySlots, Lift},
             state::TypeCheckerState,
         },
-        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
+        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
     };
 
     #[test]

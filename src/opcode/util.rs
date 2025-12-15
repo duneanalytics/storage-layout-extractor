@@ -5,8 +5,8 @@ use crate::{
     error::{container::Locatable, execution},
     opcode::control::JumpDest,
     vm::{
+        value::{RuntimeBoxedVal, RSVD},
         VM,
-        value::{RSVD, RuntimeBoxedVal},
     },
 };
 

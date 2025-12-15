@@ -6,10 +6,10 @@ use itertools::Itertools;
 use crate::{
     constant::WORD_SIZE_BITS,
     tc::{
-        lift::{Lift, mul_shifted::MulShiftedValue},
+        lift::{mul_shifted::MulShiftedValue, Lift},
         state::TypeCheckerState,
     },
-    vm::value::{RSVD, RuntimeBoxedVal, SVD},
+    vm::value::{RuntimeBoxedVal, RSVD, SVD},
 };
 
 /// This pass detects and folds expressions that mask word-size values where the
@@ -209,10 +209,10 @@ impl SubWord {
 mod test {
     use crate::{
         tc::{
-            lift::{Lift, sub_word::SubWordValue},
+            lift::{sub_word::SubWordValue, Lift},
             state::TypeCheckerState,
         },
-        vm::value::{Provenance, SV, SVD, known::KnownWord},
+        vm::value::{known::KnownWord, Provenance, SV, SVD},
     };
 
     #[test]

@@ -19,7 +19,7 @@ use crate::{
         disassembly::{Error, Result},
     },
     opcode::{
-        DynOpcode, Opcode, arithmetic as arith, control, environment as env, logic, memory as mem,
+        arithmetic as arith, control, environment as env, logic, memory as mem, DynOpcode, Opcode,
     },
 };
 

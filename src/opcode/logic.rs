@@ -3,8 +3,8 @@
 use crate::{
     opcode::{ExecuteResult, Opcode},
     vm::{
+        value::{known::KnownWord, Provenance, RSVD},
         VM,
-        value::{Provenance, RSVD, known::KnownWord},
     },
 };
 
@@ -836,8 +836,8 @@ impl Opcode for Sar {
 #[cfg(test)]
 mod test {
     use crate::{
-        opcode::{Opcode, logic, test_util as util},
-        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
+        opcode::{logic, test_util as util, Opcode},
+        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
     };
 
     #[test]

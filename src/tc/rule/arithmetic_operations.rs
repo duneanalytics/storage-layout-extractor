@@ -68,10 +68,10 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{InferenceRule, arithmetic_operations::ArithmeticOperationRule},
+            rule::{arithmetic_operations::ArithmeticOperationRule, InferenceRule},
             state::TypeCheckerState,
         },
-        vm::value::{Provenance, RSV, RSVD, TCSVD, known::KnownWord},
+        vm::value::{known::KnownWord, Provenance, RSV, RSVD, TCSVD},
     };
 
     #[test]

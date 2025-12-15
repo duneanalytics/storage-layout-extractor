@@ -341,7 +341,7 @@ mod test {
         constant::{DUP_OPCODE_BASE_VALUE, LOG_OPCODE_BASE_VALUE, SWAP_OPCODE_BASE_VALUE},
         disassembly::InstructionStream,
         error::disassembly,
-        opcode::{Opcode, control, memory},
+        opcode::{control, memory, Opcode},
     };
 
     #[test]

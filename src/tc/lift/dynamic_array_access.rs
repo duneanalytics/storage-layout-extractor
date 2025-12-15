@@ -3,7 +3,7 @@
 
 use crate::{
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{RSVD, RuntimeBoxedVal},
+    vm::value::{RuntimeBoxedVal, RSVD},
 };
 
 /// This pass detects and lifts expressions that perform dynamic array indices
@@ -97,10 +97,10 @@ impl Lift for DynamicArrayIndex {
 mod test {
     use crate::{
         tc::{
-            lift::{Lift, dynamic_array_access::DynamicArrayIndex},
+            lift::{dynamic_array_access::DynamicArrayIndex, Lift},
             state::TypeCheckerState,
         },
-        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
+        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
     };
 
     #[test]

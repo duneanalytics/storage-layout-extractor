@@ -104,7 +104,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{InferenceRule, external_calls::ExternalCallRule},
+            rule::{external_calls::ExternalCallRule, InferenceRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},

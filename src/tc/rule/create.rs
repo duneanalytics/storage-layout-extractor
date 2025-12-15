@@ -47,7 +47,7 @@ mod test {
         constant::WORD_SIZE_BITS,
         tc::{
             expression::TE,
-            rule::{InferenceRule, create::CreateContractRule},
+            rule::{create::CreateContractRule, InferenceRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},

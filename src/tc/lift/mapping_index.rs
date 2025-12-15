@@ -3,7 +3,7 @@
 
 use crate::{
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{RSVD, RuntimeBoxedVal},
+    vm::value::{RuntimeBoxedVal, RSVD},
 };
 
 /// This pass detects and folds expressions that represent indices into mappings
@@ -82,10 +82,10 @@ impl Lift for MappingIndex {
 mod test {
     use crate::{
         tc::{
-            lift::{Lift, mapping_index::MappingIndex},
+            lift::{mapping_index::MappingIndex, Lift},
             state::TypeCheckerState,
         },
-        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
+        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
     };
 
     #[test]

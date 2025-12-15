@@ -100,7 +100,7 @@ pub type ExecuteResult = Result<()>;
 mod test_util {
     use crate::{
         disassembly::InstructionStream,
-        vm::{Config, VM, value::RuntimeBoxedVal},
+        vm::{value::RuntimeBoxedVal, Config, VM},
         watchdog::LazyWatchdog,
     };
 

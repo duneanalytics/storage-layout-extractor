@@ -10,8 +10,8 @@ use crate::{
     error::{container::Locatable, disassembly, execution::Error},
     opcode::{ExecuteResult, Opcode},
     vm::{
+        value::{known::KnownWord, Provenance, RSV, RSVD},
         VM,
-        value::{Provenance, RSV, RSVD, known::KnownWord},
     },
 };
 
@@ -1438,10 +1438,10 @@ mod test {
     use rand::random;
 
     use crate::{
-        opcode::{Opcode, memory, test_util as util},
+        opcode::{memory, test_util as util, Opcode},
         vm::{
             state::memory::MemStoreSize,
-            value::{Provenance, RSV, RSVD, RuntimeBoxedVal, known::KnownWord},
+            value::{known::KnownWord, Provenance, RuntimeBoxedVal, RSV, RSVD},
         },
     };
 

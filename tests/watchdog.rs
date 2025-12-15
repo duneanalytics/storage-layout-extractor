@@ -5,8 +5,8 @@
 #![cfg(test)]
 
 use std::sync::{
-    Arc,
     atomic::{AtomicBool, Ordering},
+    Arc,
 };
 
 use storage_layout_extractor::{error, error::Error, watchdog::FlagWatchdog};
