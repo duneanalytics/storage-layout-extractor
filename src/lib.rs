@@ -127,6 +127,7 @@
 
 #![warn(clippy::all, clippy::cargo, clippy::pedantic)]
 #![allow(clippy::module_name_repetitions)] // Allows for better API naming
+#![allow(clippy::multiple_crate_versions)] // Transitive dependency versions may differ
 
 pub mod constant;
 pub mod data;

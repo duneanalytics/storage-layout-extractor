@@ -716,7 +716,7 @@ mod test {
         // Check that they combine properly, and produce the same result no matter the
         // order
         for permutation in inference_permutations {
-            for i in permutation.into_iter() {
+            for i in permutation {
                 state.infer(v_1_tv, i.clone());
             }
 
@@ -751,7 +751,7 @@ mod test {
         // Check that they combine properly, and produce the same result no matter the
         // order
         for permutation in inference_permutations {
-            for i in permutation.into_iter() {
+            for i in permutation {
                 state.infer(v_1_tv, i.clone());
             }
 
@@ -782,7 +782,7 @@ mod test {
         // Check that they combine properly, and produce the same error no matter the
         // order
         for permutation in permutations {
-            for i in permutation.into_iter() {
+            for i in permutation {
                 state.infer(v_1_ty, i.clone());
             }
 
@@ -817,7 +817,7 @@ mod test {
         // Check that they combine properly, and produce the same result no matter the
         // order
         for permutation in permutations {
-            for i in permutation.into_iter() {
+            for i in permutation {
                 state.infer(array_tv, i.clone());
             }
 
@@ -857,7 +857,7 @@ mod test {
         // Check that they combine properly, and produce the same result no matter the
         // order
         for permutation in permutations {
-            for i in permutation.into_iter() {
+            for i in permutation {
                 state.infer(array_tv, i.clone());
             }
 
@@ -896,7 +896,7 @@ mod test {
         // Check that we get the same result, and that they combine properly
         for permutation in permutations {
             // Register the array inferences in the state
-            for i in permutation.into_iter() {
+            for i in permutation {
                 state.infer(array_tv, i.clone());
             }
 
@@ -940,7 +940,7 @@ mod test {
         // Check that we get the same result, and that they combine properly
         for permutation in permutations {
             // Register the array inferences in the state
-            for i in permutation.into_iter() {
+            for i in permutation {
                 state.infer(array_tv, i.clone());
             }
 
@@ -995,7 +995,7 @@ mod test {
         // Check that we get the same result, and that they combine properly
         for permutation in permutations {
             // Register the array inferences in the state
-            for i in permutation.into_iter() {
+            for i in permutation {
                 state.infer(array_tv, i.clone());
             }
 
@@ -1046,7 +1046,7 @@ mod test {
         // Check that we get the same result, and that they combine properly
         for permutation in permutations {
             // Register the array inferences in the state
-            for i in permutation.into_iter() {
+            for i in permutation {
                 state.infer(array_tv, i.clone());
             }
 
@@ -1099,7 +1099,7 @@ mod test {
         // Check that we get the same result, and that they combine properly
         for permutation in permutations {
             // Register the array inferences in the state
-            for i in permutation.into_iter() {
+            for i in permutation {
                 state.infer(array_tv, i.clone());
             }
 

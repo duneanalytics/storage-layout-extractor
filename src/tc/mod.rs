@@ -863,7 +863,7 @@ pub mod test {
         #[must_use]
         pub fn execution_result_with_values(values: Vec<RuntimeBoxedVal>) -> ExecutionResult {
             let mut state_with_values = VMState::new(0, 0, Config::default());
-            for v in values.into_iter() {
+            for v in values {
                 state_with_values.record_value(v);
             }
 
