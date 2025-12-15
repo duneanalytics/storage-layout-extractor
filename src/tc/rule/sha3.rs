@@ -36,7 +36,7 @@ mod test {
         constant::WORD_SIZE_BITS,
         tc::{
             expression::TE,
-            rule::{sha3::HashRule, InferenceRule},
+            rule::{InferenceRule, sha3::HashRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},

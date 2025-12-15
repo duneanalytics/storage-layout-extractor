@@ -14,10 +14,7 @@ use itertools::Itertools;
 
 use crate::{
     constant::{
-        ADDRESS_WIDTH_BITS,
-        BOOL_WIDTH_BITS,
-        BYTE_SIZE_BITS,
-        FUNCTION_WIDTH_BITS,
+        ADDRESS_WIDTH_BITS, BOOL_WIDTH_BITS, BYTE_SIZE_BITS, FUNCTION_WIDTH_BITS,
         SELECTOR_WIDTH_BITS,
     },
     tc::state::type_variable::TypeVariable,
@@ -204,7 +201,7 @@ impl TypeExpression {
 
         Self::Conflict {
             conflicts: all_conflicts,
-            reasons:   all_reasons,
+            reasons: all_reasons,
         }
     }
 

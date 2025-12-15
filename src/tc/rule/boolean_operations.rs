@@ -58,7 +58,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{boolean_operations::BooleanOpsRule, InferenceRule},
+            rule::{InferenceRule, boolean_operations::BooleanOpsRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},
@@ -72,7 +72,7 @@ mod test {
         let operator = RSV::new_synthetic(
             2,
             RSVD::LessThan {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
@@ -103,7 +103,7 @@ mod test {
         let operator = RSV::new_synthetic(
             2,
             RSVD::GreaterThan {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
@@ -134,7 +134,7 @@ mod test {
         let operator = RSV::new_synthetic(
             2,
             RSVD::SignedLessThan {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
@@ -165,7 +165,7 @@ mod test {
         let operator = RSV::new_synthetic(
             2,
             RSVD::SignedGreaterThan {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
@@ -196,7 +196,7 @@ mod test {
         let operator = RSV::new_synthetic(
             2,
             RSVD::Equals {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
@@ -255,7 +255,7 @@ mod test {
         let operator = RSV::new_synthetic(
             2,
             RSVD::And {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
@@ -286,7 +286,7 @@ mod test {
         let operator = RSV::new_synthetic(
             2,
             RSVD::Or {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
@@ -317,7 +317,7 @@ mod test {
         let operator = RSV::new_synthetic(
             2,
             RSVD::Xor {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );

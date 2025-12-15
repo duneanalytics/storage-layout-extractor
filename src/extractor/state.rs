@@ -3,13 +3,13 @@
 use std::fmt::Debug;
 
 use crate::{
+    StorageLayout,
     disassembly::InstructionStream,
     tc,
     tc::TypeChecker,
     vm,
     vm::{ExecutionResult, VM},
     watchdog::DynWatchdog,
-    StorageLayout,
 };
 
 /// A marker trait that says that the type implementing it is an extractor

@@ -194,7 +194,7 @@ pub type StackResult<T> = std::result::Result<T, Error>;
 #[derive(Debug)]
 pub struct LocatedStackHandle<'a> {
     instruction_pointer: u32,
-    stack:               &'a mut Stack,
+    stack: &'a mut Stack,
 }
 
 impl<'a> LocatedStackHandle<'a> {
@@ -257,7 +257,7 @@ mod test {
         constant::MAXIMUM_STACK_DEPTH,
         vm::{
             state::stack::Stack,
-            value::{Provenance, RuntimeBoxedVal, RSV},
+            value::{Provenance, RSV, RuntimeBoxedVal},
         },
     };
 

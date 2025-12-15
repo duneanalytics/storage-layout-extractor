@@ -5,6 +5,7 @@ pub mod contract;
 pub mod state;
 
 use crate::{
+    StorageLayout,
     disassembly::InstructionStream,
     error,
     extractor::{contract::Contract, state::State},
@@ -13,7 +14,6 @@ use crate::{
     vm,
     vm::VM,
     watchdog::DynWatchdog,
-    StorageLayout,
 };
 
 /// Creates a new extractor wrapping the provided `contract`, and with the
@@ -128,7 +128,7 @@ impl<S: State> Extractor<S> {
     pub unsafe fn set_state<NS: State>(self, new_state: NS) -> Extractor<NS> {
         Extractor {
             contract: self.contract,
-            state:    new_state,
+            state: new_state,
         }
     }
 

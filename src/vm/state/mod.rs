@@ -6,10 +6,10 @@ pub mod stack;
 pub mod storage;
 
 use crate::vm::{
+    Config,
     data::VisitedOpcodes,
     state::{memory::Memory, stack::Stack, storage::Storage},
     value::RuntimeBoxedVal,
-    Config,
 };
 
 /// The state representation for the [`super::VM`].
@@ -203,9 +203,9 @@ impl VMState {
 #[cfg(test)]
 mod test {
     use crate::vm::{
+        Config,
         state::VMState,
         value::{RSV, RSVD},
-        Config,
     };
 
     #[test]

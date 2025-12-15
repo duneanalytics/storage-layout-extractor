@@ -3,7 +3,7 @@
 
 use crate::{
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{RuntimeBoxedVal, RSVD},
+    vm::value::{RSVD, RuntimeBoxedVal},
 };
 
 /// This pass detects and folds expressions that represent indices into mappings
@@ -42,11 +42,11 @@ impl Lift for MappingIndex {
         fn guard_mapping_accesses(data: &RSVD) -> Option<RSVD> {
             match data {
                 RSVD::StorageWrite { key, value } => Some(RSVD::StorageWrite {
-                    key:   key.clone().transform_data(insert_mapping_accesses),
+                    key: key.clone().transform_data(insert_mapping_accesses),
                     value: value.clone().transform_data(insert_mapping_accesses),
                 }),
                 RSVD::SLoad { key, value } => Some(RSVD::SLoad {
-                    key:   key.clone().transform_data(insert_mapping_accesses),
+                    key: key.clone().transform_data(insert_mapping_accesses),
                     value: value.clone().transform_data(insert_mapping_accesses),
                 }),
                 RSVD::UnwrittenStorageValue { key } => Some(RSVD::UnwrittenStorageValue {
@@ -68,8 +68,8 @@ impl Lift for MappingIndex {
             };
 
             Some(RSVD::MappingIndex {
-                key:        key.clone().transform_data(insert_mapping_accesses),
-                slot:       slot.clone().transform_data(insert_mapping_accesses),
+                key: key.clone().transform_data(insert_mapping_accesses),
+                slot: slot.clone().transform_data(insert_mapping_accesses),
                 projection: None,
             })
         }
@@ -82,10 +82,10 @@ impl Lift for MappingIndex {
 mod test {
     use crate::{
         tc::{
-            lift::{mapping_index::MappingIndex, Lift},
+            lift::{Lift, mapping_index::MappingIndex},
             state::TypeCheckerState,
         },
-        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
+        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
     };
 
     #[test]
@@ -103,7 +103,7 @@ mod test {
         let s_load = RSV::new_synthetic(
             5,
             RSVD::SLoad {
-                key:   slot_key.clone(),
+                key: slot_key.clone(),
                 value: hash.clone(),
             },
         );
@@ -156,7 +156,7 @@ mod test {
         let s_store = RSV::new_synthetic(
             7,
             RSVD::StorageWrite {
-                key:   slot_key.clone(),
+                key: slot_key.clone(),
                 value: outer_hash.clone(),
             },
         );

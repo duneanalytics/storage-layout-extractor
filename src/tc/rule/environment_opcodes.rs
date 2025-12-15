@@ -53,7 +53,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{environment_opcodes::EnvironmentCodesRule, InferenceRule},
+            rule::{InferenceRule, environment_opcodes::EnvironmentCodesRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},

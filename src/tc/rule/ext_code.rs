@@ -59,7 +59,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{ext_code::ExtCodeRule, InferenceRule},
+            rule::{InferenceRule, ext_code::ExtCodeRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},
@@ -103,8 +103,8 @@ mod test {
             3,
             RSVD::ExtCodeCopy {
                 address: address.clone(),
-                offset:  offset.clone(),
-                size:    size.clone(),
+                offset: offset.clone(),
+                size: size.clone(),
             },
         );
 

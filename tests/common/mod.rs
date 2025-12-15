@@ -10,15 +10,14 @@ use serde::{Deserialize, Serialize};
 use storage_layout_extractor as sle;
 use storage_layout_extractor::{
     extractor::{
+        InitialExtractor,
         chain::{
-            version::{ChainVersion, EthereumVersion},
             Chain,
+            version::{ChainVersion, EthereumVersion},
         },
         contract::Contract,
-        InitialExtractor,
     },
-    tc,
-    vm,
+    tc, vm,
     watchdog::{DynWatchdog, LazyWatchdog},
 };
 

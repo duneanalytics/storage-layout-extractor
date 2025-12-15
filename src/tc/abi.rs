@@ -67,7 +67,7 @@ pub enum AbiType {
     Array {
         size: U256Wrapper,
         #[serde(rename = "type")]
-        tp:   Box<AbiType>,
+        tp: Box<AbiType>,
     },
 
     /// Byte arrays of a fixed `length`, where `0 < length <= 32`.
@@ -115,7 +115,7 @@ pub enum AbiType {
         #[derivative(Hash = "ignore", PartialEq = "ignore")]
         conflicts: Vec<String>,
         #[derivative(Hash = "ignore", PartialEq = "ignore")]
-        reasons:   Vec<String>,
+        reasons: Vec<String>,
     },
 }
 
@@ -128,7 +128,7 @@ impl AbiType {
     pub fn conflict() -> Self {
         Self::ConflictedType {
             conflicts: Vec::new(),
-            reasons:   Vec::new(),
+            reasons: Vec::new(),
         }
     }
 }

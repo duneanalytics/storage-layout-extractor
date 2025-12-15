@@ -3,7 +3,7 @@
 
 use std::collections::HashMap;
 
-use crate::vm::value::{Provenance, RuntimeBoxedVal, RSV, RSVD};
+use crate::vm::value::{Provenance, RSV, RSVD, RuntimeBoxedVal};
 
 /// A representation of the persistent storage of the symbolic virtual machine.
 ///
@@ -110,7 +110,7 @@ impl Storage {
                 most_recent.data().clone()
             } else {
                 RSVD::SLoad {
-                    key:   key.clone(),
+                    key: key.clone(),
                     value: most_recent.clone(),
                 }
             },
@@ -187,7 +187,7 @@ impl Storage {
                     RSV::new(
                         v.instruction_pointer(),
                         RSVD::StorageWrite {
-                            key:   k.clone(),
+                            key: k.clone(),
                             value: v,
                         },
                         provenance,
@@ -210,7 +210,7 @@ impl Default for Storage {
 mod test {
     use crate::vm::{
         state::storage::Storage,
-        value::{known::KnownWord, Provenance, RuntimeBoxedVal, RSV, RSVD},
+        value::{Provenance, RSV, RSVD, RuntimeBoxedVal, known::KnownWord},
     };
 
     /// Creates a new synthetic value for testing purposes.

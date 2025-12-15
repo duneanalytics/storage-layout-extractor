@@ -5,7 +5,7 @@ use crate::{
     constant::BYTE_SIZE_BITS,
     error::unification::Result,
     tc::{expression::TE, rule::InferenceRule, state::TypeCheckerState},
-    vm::value::{known::KnownWord, TCBoxedVal, TCSVD},
+    vm::value::{TCBoxedVal, TCSVD, known::KnownWord},
 };
 
 /// This rule creates equations as described below for expressions of the
@@ -52,10 +52,10 @@ mod test {
         constant::BYTE_SIZE_BITS,
         tc::{
             expression::TE,
-            rule::{call_data::CallDataRule, InferenceRule},
+            rule::{InferenceRule, call_data::CallDataRule},
             state::TypeCheckerState,
         },
-        vm::value::{known::KnownWord, Provenance, RSV, RSVD, TCSVD},
+        vm::value::{Provenance, RSV, RSVD, TCSVD, known::KnownWord},
     };
 
     #[test]
@@ -124,7 +124,7 @@ mod test {
         let size = RSV::new_synthetic(
             3,
             RSVD::Add {
-                left:  left_val.clone(),
+                left: left_val.clone(),
                 right: right_val.clone(),
             },
         );

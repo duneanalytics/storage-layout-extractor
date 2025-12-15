@@ -69,7 +69,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         13,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Number { size: Some(256) }),
+            key_type: Box::new(AbiType::Number { size: Some(256) }),
             value_type: Box::new(AbiType::Struct {
                 elements: vec![
                     StructElement::new(0, AbiType::Number { size: Some(256) }),
@@ -106,7 +106,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         16,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Number { size: Some(256) }),
+            key_type: Box::new(AbiType::Number { size: Some(256) }),
             value_type: Box::new(AbiType::UInt { size: Some(256) }),
         }
     ));
@@ -117,7 +117,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         17,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Number { size: Some(256) }),
+            key_type: Box::new(AbiType::Number { size: Some(256) }),
             value_type: Box::new(AbiType::Number { size: None }),
         }
     ));
@@ -128,7 +128,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         18,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Number { size: Some(256) }),
+            key_type: Box::new(AbiType::Number { size: Some(256) }),
             value_type: Box::new(AbiType::UInt { size: None }),
         }
     ));
@@ -139,9 +139,9 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         19,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Number { size: Some(256) }),
+            key_type: Box::new(AbiType::Number { size: Some(256) }),
             value_type: Box::new(AbiType::Mapping {
-                key_type:   Box::new(AbiType::Bytes { length: Some(32) }),
+                key_type: Box::new(AbiType::Bytes { length: Some(32) }),
                 value_type: Box::new(AbiType::UInt { size: Some(256) }),
             }),
         }
@@ -153,9 +153,9 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         20,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Address),
+            key_type: Box::new(AbiType::Address),
             value_type: Box::new(AbiType::Mapping {
-                key_type:   Box::new(AbiType::Number { size: Some(256) }),
+                key_type: Box::new(AbiType::Number { size: Some(256) }),
                 value_type: Box::new(AbiType::UInt { size: Some(256) }),
             }),
         }
@@ -167,9 +167,9 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         21,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Address),
+            key_type: Box::new(AbiType::Address),
             value_type: Box::new(AbiType::Mapping {
-                key_type:   Box::new(AbiType::Number { size: Some(256) }),
+                key_type: Box::new(AbiType::Number { size: Some(256) }),
                 value_type: Box::new(AbiType::UInt { size: None }),
             }),
         }
@@ -181,11 +181,11 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         22,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Address),
+            key_type: Box::new(AbiType::Address),
             value_type: Box::new(AbiType::Mapping {
-                key_type:   Box::new(AbiType::Number { size: Some(256) }),
+                key_type: Box::new(AbiType::Number { size: Some(256) }),
                 value_type: Box::new(AbiType::Mapping {
-                    key_type:   Box::new(AbiType::Bytes { length: Some(32) }),
+                    key_type: Box::new(AbiType::Bytes { length: Some(32) }),
                     value_type: Box::new(AbiType::UInt { size: Some(256) }),
                 }),
             }),
@@ -198,9 +198,9 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         23,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Address),
+            key_type: Box::new(AbiType::Address),
             value_type: Box::new(AbiType::Mapping {
-                key_type:   Box::new(AbiType::Number { size: Some(256) }),
+                key_type: Box::new(AbiType::Number { size: Some(256) }),
                 value_type: Box::new(AbiType::UInt { size: Some(256) }),
             }),
         }
@@ -212,9 +212,9 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         24,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Address),
+            key_type: Box::new(AbiType::Address),
             value_type: Box::new(AbiType::Mapping {
-                key_type:   Box::new(AbiType::Number { size: Some(256) }),
+                key_type: Box::new(AbiType::Number { size: Some(256) }),
                 value_type: Box::new(AbiType::Struct {
                     elements: vec![
                         StructElement::new(0, AbiType::Number { size: Some(8) }),
@@ -231,9 +231,9 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         25,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Address),
+            key_type: Box::new(AbiType::Address),
             value_type: Box::new(AbiType::Mapping {
-                key_type:   Box::new(AbiType::Number { size: Some(256) }),
+                key_type: Box::new(AbiType::Number { size: Some(256) }),
                 value_type: Box::new(AbiType::Struct {
                     elements: vec![
                         StructElement::new(0, AbiType::Number { size: Some(8) }),
@@ -249,7 +249,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         26,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Address),
+            key_type: Box::new(AbiType::Address),
             value_type: Box::new(AbiType::UInt { size: None }),
         }
     ));
@@ -260,7 +260,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         27,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Address),
+            key_type: Box::new(AbiType::Address),
             value_type: Box::new(AbiType::Number { size: None }),
         }
     ));
@@ -270,7 +270,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         28,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Address),
+            key_type: Box::new(AbiType::Address),
             value_type: Box::new(AbiType::UInt { size: None }),
         }
     ));
@@ -280,7 +280,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         29,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Bytes { length: Some(20) }),
+            key_type: Box::new(AbiType::Bytes { length: Some(20) }),
             value_type: Box::new(AbiType::Number { size: None }),
         }
     ));
@@ -300,7 +300,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         31,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Number { size: Some(256) }),
+            key_type: Box::new(AbiType::Number { size: Some(256) }),
             value_type: Box::new(AbiType::Struct {
                 elements: vec![
                     StructElement::new(0, AbiType::Number { size: Some(8) }),
@@ -316,7 +316,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         32,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Number { size: Some(256) }),
+            key_type: Box::new(AbiType::Number { size: Some(256) }),
             value_type: Box::new(AbiType::UInt { size: None }),
         }
     ));
@@ -327,7 +327,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         33,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Number { size: Some(256) }),
+            key_type: Box::new(AbiType::Number { size: Some(256) }),
             value_type: Box::new(AbiType::UInt { size: None }),
         }
     ));
@@ -341,7 +341,7 @@ fn correctly_generates_a_layout() -> anyhow::Result<()> {
         35,
         0,
         AbiType::Mapping {
-            key_type:   Box::new(AbiType::Address),
+            key_type: Box::new(AbiType::Address),
             value_type: Box::new(AbiType::Number { size: None }),
         }
     ));

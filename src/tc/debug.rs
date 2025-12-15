@@ -5,10 +5,10 @@ use std::collections::{HashSet, VecDeque};
 use crate::{
     tc::{
         expression::{InferenceSet, TE},
-        state::{type_variable::TypeVariable, TypeCheckerState},
+        state::{TypeCheckerState, type_variable::TypeVariable},
         unification::UnificationForest,
     },
-    vm::value::{known::KnownWord, TCBoxedVal, TCSVD},
+    vm::value::{TCBoxedVal, TCSVD, known::KnownWord},
 };
 
 /// Gets the type variable for the storage slot at `index` in `state`.

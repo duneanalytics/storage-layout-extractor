@@ -4,8 +4,8 @@
 use std::{
     fmt::{Display, Formatter},
     sync::{
-        atomic::{AtomicUsize, Ordering},
         Arc,
+        atomic::{AtomicUsize, Ordering},
     },
 };
 

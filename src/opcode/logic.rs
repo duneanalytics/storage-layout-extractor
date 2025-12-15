@@ -3,8 +3,8 @@
 use crate::{
     opcode::{ExecuteResult, Opcode},
     vm::{
-        value::{known::KnownWord, Provenance, RSVD},
         VM,
+        value::{Provenance, RSVD, known::KnownWord},
     },
 };
 
@@ -598,14 +598,14 @@ impl Opcode for Byte {
         let offset_times_0x08 = vm.build().symbolic_exec(
             instruction_pointer,
             RSVD::Multiply {
-                left:  offset,
+                left: offset,
                 right: const_0x08,
             },
         );
         let shift = vm.build().symbolic_exec(
             instruction_pointer,
             RSVD::Subtract {
-                left:  const_0xf8,
+                left: const_0xf8,
                 right: offset_times_0x08,
             },
         );
@@ -615,7 +615,7 @@ impl Opcode for Byte {
         let result = vm.build().symbolic_exec(
             instruction_pointer,
             RSVD::And {
-                left:  shifted,
+                left: shifted,
                 right: const_0xff,
             },
         );
@@ -836,8 +836,8 @@ impl Opcode for Sar {
 #[cfg(test)]
 mod test {
     use crate::{
-        opcode::{logic, test_util as util, Opcode},
-        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
+        opcode::{Opcode, logic, test_util as util},
+        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
     };
 
     #[test]

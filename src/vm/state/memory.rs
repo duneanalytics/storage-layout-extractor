@@ -4,7 +4,7 @@ use std::{collections::HashMap, hash::Hash};
 
 use crate::{
     constant::WORD_SIZE_BITS,
-    vm::value::{known::KnownWord, Provenance, RuntimeBoxedVal, RSV, RSVD},
+    vm::value::{Provenance, RSV, RSVD, RuntimeBoxedVal, known::KnownWord},
 };
 
 /// A representation of the transient memory of the symbolic virtual machine.
@@ -327,7 +327,7 @@ mod test {
         constant::DEFAULT_MEMORY_SINGLE_OPERATION_MAX_BYTES,
         vm::{
             state::memory::{MemStoreSize, Memory},
-            value::{known::KnownWord, Provenance, RuntimeBoxedVal, RSV, RSVD},
+            value::{Provenance, RSV, RSVD, RuntimeBoxedVal, known::KnownWord},
         },
     };
 
@@ -502,21 +502,21 @@ mod test {
         let sum = RSV::new_synthetic(
             2,
             RSVD::Add {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
         let prod = RSV::new_synthetic(
             3,
             RSVD::Multiply {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
         let sub = RSV::new_synthetic(
             4,
             RSVD::Subtract {
-                left:  left.clone(),
+                left: left.clone(),
                 right: right.clone(),
             },
         );
@@ -524,7 +524,7 @@ mod test {
             5,
             RSVD::Divide {
                 dividend: left,
-                divisor:  right,
+                divisor: right,
             },
         );
 

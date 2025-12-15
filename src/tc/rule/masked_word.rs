@@ -52,8 +52,8 @@ impl InferenceRule for MaskedWordRule {
 mod test {
     use crate::{
         tc::{
-            expression::{Span, WordUse, TE},
-            rule::{masked_word::MaskedWordRule, InferenceRule},
+            expression::{Span, TE, WordUse},
+            rule::{InferenceRule, masked_word::MaskedWordRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},
@@ -66,9 +66,9 @@ mod test {
         let mask = RSV::new_synthetic(
             1,
             RSVD::SubWord {
-                value:  value.clone(),
+                value: value.clone(),
                 offset: 64,
-                size:   128,
+                size: 128,
             },
         );
 

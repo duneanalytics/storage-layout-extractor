@@ -4,7 +4,7 @@
 use crate::{
     constant::WORD_SIZE_BITS,
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{known::KnownWord, RuntimeBoxedVal, RSVD},
+    vm::value::{RSVD, RuntimeBoxedVal, known::KnownWord},
 };
 
 /// This pass detects and lifts expressions that move values around inside a
@@ -103,10 +103,10 @@ impl Lift for MulShiftedValue {
 mod test {
     use crate::{
         tc::{
-            lift::{mul_shifted::MulShiftedValue, Lift},
+            lift::{Lift, mul_shifted::MulShiftedValue},
             state::TypeCheckerState,
         },
-        vm::value::{known::KnownWord, Provenance, SV, SVD},
+        vm::value::{Provenance, SV, SVD, known::KnownWord},
     };
 
     #[test]
@@ -142,14 +142,14 @@ mod test {
         let mul_const_on_left = SV::new_synthetic(
             3,
             SVD::Multiply {
-                left:  constant.clone(),
+                left: constant.clone(),
                 right: sub_word.clone(),
             },
         );
         let mul_const_on_right = SV::new_synthetic(
             4,
             SVD::Multiply {
-                left:  sub_word.clone(),
+                left: sub_word.clone(),
                 right: constant,
             },
         );
@@ -185,9 +185,9 @@ mod test {
         let inner_sub_word = SV::new_synthetic(
             1,
             SVD::SubWord {
-                value:  inner_value,
+                value: inner_value,
                 offset: 0,
-                size:   128,
+                size: 128,
             },
         );
         let constant = SV::new_known_value(
@@ -199,22 +199,22 @@ mod test {
         let inner_mul = SV::new_synthetic(
             3,
             SVD::Multiply {
-                left:  constant.clone(),
+                left: constant.clone(),
                 right: inner_sub_word.clone(),
             },
         );
         let outer_sub_word = SV::new_synthetic(
             4,
             SVD::SubWord {
-                value:  inner_mul,
+                value: inner_mul,
                 offset: 0,
-                size:   192,
+                size: 192,
             },
         );
         let outer_mul = SV::new_synthetic(
             5,
             SVD::Multiply {
-                left:  outer_sub_word,
+                left: outer_sub_word,
                 right: constant,
             },
         );
@@ -270,7 +270,7 @@ mod test {
         let mul = SV::new_synthetic(
             3,
             SVD::Multiply {
-                left:  constant,
+                left: constant,
                 right: sub_word,
             },
         );
@@ -298,7 +298,7 @@ mod test {
         let mul = SV::new_synthetic(
             3,
             SVD::Multiply {
-                left:  constant,
+                left: constant,
                 right: value,
             },
         );
@@ -330,7 +330,7 @@ mod test {
         let mul = SV::new_synthetic(
             3,
             SVD::Multiply {
-                left:  constant,
+                left: constant,
                 right: sub_word,
             },
         );

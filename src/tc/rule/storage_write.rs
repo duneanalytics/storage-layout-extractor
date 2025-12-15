@@ -49,7 +49,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{storage_write::StorageWriteRule, InferenceRule},
+            rule::{InferenceRule, storage_write::StorageWriteRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},
@@ -63,7 +63,7 @@ mod test {
         let write = RSV::new_synthetic(
             2,
             RSVD::StorageWrite {
-                key:   input_key.clone(),
+                key: input_key.clone(),
                 value: input_value.clone(),
             },
         );

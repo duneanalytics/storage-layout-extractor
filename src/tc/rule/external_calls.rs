@@ -104,7 +104,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{external_calls::ExternalCallRule, InferenceRule},
+            rule::{InferenceRule, external_calls::ExternalCallRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},
@@ -123,12 +123,12 @@ mod test {
         let call = RSV::new_synthetic(
             6,
             RSVD::CallWithValue {
-                gas:           gas.clone(),
-                address:       address.clone(),
-                value:         value.clone(),
+                gas: gas.clone(),
+                address: address.clone(),
+                value: value.clone(),
                 argument_data: arg_data.clone(),
-                ret_offset:    ret_offset.clone(),
-                ret_size:      ret_size.clone(),
+                ret_offset: ret_offset.clone(),
+                ret_size: ret_size.clone(),
             },
         );
 
@@ -179,11 +179,11 @@ mod test {
         let call = RSV::new_synthetic(
             6,
             RSVD::CallWithoutValue {
-                gas:           gas.clone(),
-                address:       address.clone(),
+                gas: gas.clone(),
+                address: address.clone(),
                 argument_data: arg_data.clone(),
-                ret_offset:    ret_offset.clone(),
-                ret_size:      ret_size.clone(),
+                ret_offset: ret_offset.clone(),
+                ret_size: ret_size.clone(),
             },
         );
 

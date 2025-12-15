@@ -6,7 +6,7 @@ use itertools::Itertools;
 
 use crate::{
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{PackedSpan, RuntimeBoxedVal, RSV, RSVD},
+    vm::value::{PackedSpan, RSV, RSVD, RuntimeBoxedVal},
 };
 
 /// This pass detects and lifts expressions that represent the packing of
@@ -123,7 +123,7 @@ impl Lift for PackedEncoding {
                     None,
                 );
                 let store = RSVD::StorageWrite {
-                    key:   key.clone(),
+                    key: key.clone(),
                     value: packed,
                 };
                 Some(store)
@@ -140,7 +140,7 @@ impl Lift for PackedEncoding {
 mod test {
     use crate::{
         tc::{
-            lift::{packed_encoding::PackedEncoding, Lift},
+            lift::{Lift, packed_encoding::PackedEncoding},
             state::TypeCheckerState,
         },
         vm::value::{PackedSpan, Provenance, RSV, RSVD},
@@ -153,9 +153,9 @@ mod test {
         let sub_word_1 = RSV::new_synthetic(
             1,
             RSVD::SubWord {
-                value:  value.clone(),
+                value: value.clone(),
                 offset: 128,
-                size:   128,
+                size: 128,
             },
         );
         let sub_word_2 = RSV::new_synthetic(
@@ -169,7 +169,7 @@ mod test {
         let or = RSV::new_synthetic(
             3,
             RSVD::Or {
-                left:  sub_word_1.clone(),
+                left: sub_word_1.clone(),
                 right: sub_word_2.clone(),
             },
         );
@@ -177,7 +177,7 @@ mod test {
         let store = RSV::new_synthetic(
             5,
             RSVD::StorageWrite {
-                key:   input_key.clone(),
+                key: input_key.clone(),
                 value: or,
             },
         );
@@ -212,17 +212,17 @@ mod test {
         let sub_word_1 = RSV::new_synthetic(
             1,
             RSVD::SubWord {
-                value:  value.clone(),
+                value: value.clone(),
                 offset: 128,
-                size:   128,
+                size: 128,
             },
         );
         let sub_word_2 = RSV::new_synthetic(
             2,
             RSVD::SubWord {
-                value:  value.clone(),
+                value: value.clone(),
                 offset: 64,
-                size:   64,
+                size: 64,
             },
         );
         let sub_word_3 = RSV::new_synthetic(
@@ -236,14 +236,14 @@ mod test {
         let inner_or = RSV::new_synthetic(
             4,
             RSVD::Or {
-                left:  sub_word_1.clone(),
+                left: sub_word_1.clone(),
                 right: sub_word_2.clone(),
             },
         );
         let outer_or = RSV::new_synthetic(
             5,
             RSVD::Or {
-                left:  inner_or,
+                left: inner_or,
                 right: sub_word_3.clone(),
             },
         );
@@ -251,7 +251,7 @@ mod test {
         let store = RSV::new_synthetic(
             7,
             RSVD::StorageWrite {
-                key:   input_key.clone(),
+                key: input_key.clone(),
                 value: outer_or,
             },
         );
@@ -287,17 +287,17 @@ mod test {
         let sub_word_1 = RSV::new_synthetic(
             1,
             RSVD::SubWord {
-                value:  value.clone(),
+                value: value.clone(),
                 offset: 128,
-                size:   128,
+                size: 128,
             },
         );
         let sub_word_2 = RSV::new_synthetic(
             2,
             RSVD::SubWord {
-                value:  value.clone(),
+                value: value.clone(),
                 offset: 0,
-                size:   64,
+                size: 64,
             },
         );
         let sub_word_3 = RSV::new_synthetic(
@@ -312,20 +312,20 @@ mod test {
             4,
             RSVD::Shifted {
                 offset: 64,
-                value:  sub_word_3.clone(),
+                value: sub_word_3.clone(),
             },
         );
         let inner_or = RSV::new_synthetic(
             4,
             RSVD::Or {
-                left:  sub_word_1.clone(),
+                left: sub_word_1.clone(),
                 right: sub_word_2.clone(),
             },
         );
         let outer_or = RSV::new_synthetic(
             5,
             RSVD::Or {
-                left:  inner_or,
+                left: inner_or,
                 right: shifted.clone(),
             },
         );
@@ -333,7 +333,7 @@ mod test {
         let store = RSV::new_synthetic(
             7,
             RSVD::StorageWrite {
-                key:   input_key.clone(),
+                key: input_key.clone(),
                 value: outer_or,
             },
         );
@@ -376,7 +376,7 @@ mod test {
         let s_load = RSV::new_synthetic(
             7,
             RSVD::SLoad {
-                key:   input_key.clone(),
+                key: input_key.clone(),
                 value: uninit_load,
             },
         );
@@ -391,22 +391,22 @@ mod test {
         let sub_word_2 = RSV::new_synthetic(
             2,
             RSVD::SubWord {
-                value:  s_load,
+                value: s_load,
                 offset: 0,
-                size:   128,
+                size: 128,
             },
         );
         let or = RSV::new_synthetic(
             3,
             RSVD::Or {
-                left:  sub_word_1.clone(),
+                left: sub_word_1.clone(),
                 right: sub_word_2,
             },
         );
         let store = RSV::new_synthetic(
             5,
             RSVD::StorageWrite {
-                key:   input_key.clone(),
+                key: input_key.clone(),
                 value: or,
             },
         );

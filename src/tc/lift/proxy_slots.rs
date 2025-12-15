@@ -8,7 +8,7 @@ use sha3::{Digest, Keccak256};
 use crate::{
     constant::SOLIDITY_STRING_POINTER,
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{known::KnownWord, RuntimeBoxedVal, RSV, RSVD},
+    vm::value::{RSV, RSVD, RuntimeBoxedVal, known::KnownWord},
 };
 
 /// This pass detects and folds expressions that access slots constructed using
@@ -211,7 +211,7 @@ impl Lift for ProxySlots {
         fn recognise_proxy_slots(data: &RSVD) -> Option<RSVD> {
             match data {
                 RSVD::SLoad { key, value } => Some(RSVD::SLoad {
-                    key:   if let Some(new_key) = unpick_proxy_slots(key.data()) {
+                    key: if let Some(new_key) = unpick_proxy_slots(key.data()) {
                         RSV::new(key.instruction_pointer(), new_key, key.provenance(), None)
                     } else {
                         key.clone().transform_data(recognise_proxy_slots)
@@ -219,7 +219,7 @@ impl Lift for ProxySlots {
                     value: value.clone().transform_data(recognise_proxy_slots),
                 }),
                 RSVD::StorageWrite { key, value } => Some(RSVD::StorageWrite {
-                    key:   if let Some(new_key) = unpick_proxy_slots(key.data()) {
+                    key: if let Some(new_key) = unpick_proxy_slots(key.data()) {
                         RSV::new(key.instruction_pointer(), new_key, key.provenance(), None)
                     } else {
                         key.clone().transform_data(recognise_proxy_slots)
@@ -241,10 +241,10 @@ mod test {
 
     use crate::{
         tc::{
-            lift::{proxy_slots::ProxySlots, Lift},
+            lift::{Lift, proxy_slots::ProxySlots},
             state::TypeCheckerState,
         },
-        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
+        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
     };
 
     #[test]
@@ -373,7 +373,7 @@ mod test {
         let s_load = RSV::new_synthetic(
             3,
             RSVD::SLoad {
-                key:   input_key.clone(),
+                key: input_key.clone(),
                 value: input_value.clone(),
             },
         );
@@ -421,7 +421,7 @@ mod test {
         let s_load = RSV::new_synthetic(
             3,
             RSVD::SLoad {
-                key:   input_key.clone(),
+                key: input_key.clone(),
                 value: input_value.clone(),
             },
         );
@@ -473,7 +473,7 @@ mod test {
         let s_load = RSV::new_synthetic(
             4,
             RSVD::SLoad {
-                key:   sha3,
+                key: sha3,
                 value: input_value.clone(),
             },
         );
@@ -523,7 +523,7 @@ mod test {
         let s_load = RSV::new_synthetic(
             4,
             RSVD::SLoad {
-                key:   sha3.clone(),
+                key: sha3.clone(),
                 value: input_value.clone(),
             },
         );
@@ -571,7 +571,7 @@ mod test {
         let s_load = RSV::new_synthetic(
             4,
             RSVD::SLoad {
-                key:   sha3,
+                key: sha3,
                 value: input_value.clone(),
             },
         );
@@ -631,7 +631,7 @@ mod test {
         let s_load = RSV::new_synthetic(
             4,
             RSVD::SLoad {
-                key:   sha3.clone(),
+                key: sha3.clone(),
                 value: input_value.clone(),
             },
         );

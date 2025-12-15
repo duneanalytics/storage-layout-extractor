@@ -16,8 +16,8 @@ use crate::{
         unification::{Error, Result},
     },
     tc::{
-        expression::{InferenceSet, Span, TypeExpression, WordUse, TE},
-        state::{type_variable::TypeVariable, TypeCheckerState},
+        expression::{InferenceSet, Span, TE, TypeExpression, WordUse},
+        state::{TypeCheckerState, type_variable::TypeVariable},
     },
     watchdog::DynWatchdog,
 };
@@ -615,7 +615,7 @@ impl Merge {
 /// A representation of a symmetrical equality between two type variables.
 #[derive(Copy, Clone, Debug, Eq, Hash, PartialEq)]
 pub struct Equality {
-    pub left:  TypeVariable,
+    pub left: TypeVariable,
     pub right: TypeVariable,
 }
 
@@ -660,7 +660,7 @@ mod test {
     use crate::{
         constant::ADDRESS_WIDTH_BITS,
         tc::{
-            expression::{Span, WordUse, TE},
+            expression::{Span, TE, WordUse},
             state::TypeCheckerState,
             unification::{merge, unify},
         },
@@ -964,11 +964,11 @@ mod test {
         // Create some inferences and register them
         let array_inference_1 = TE::FixedArray {
             element: elem_1_tv,
-            length:  input_len,
+            length: input_len,
         };
         let array_inference_2 = TE::FixedArray {
             element: elem_2_tv,
-            length:  input_len,
+            length: input_len,
         };
         let elem_inference_1 = TE::bytes(None);
         let elem_inference_2 = TE::signed_word(Some(64));
@@ -1013,11 +1013,11 @@ mod test {
         // Create some inferences and register them
         let array_inference_1 = TE::FixedArray {
             element: elem_1_tv,
-            length:  input_len,
+            length: input_len,
         };
         let array_inference_2 = TE::FixedArray {
             element: elem_2_tv,
-            length:  input_len,
+            length: input_len,
         };
         let elem_inference_1 = TE::unsigned_word(None);
         let elem_inference_2 = TE::signed_word(Some(64));
@@ -1064,11 +1064,11 @@ mod test {
         // Create some inferences and register them
         let array_inference_1 = TE::FixedArray {
             element: elem_1_tv,
-            length:  U256::from(7u32),
+            length: U256::from(7u32),
         };
         let array_inference_2 = TE::FixedArray {
             element: elem_2_tv,
-            length:  U256::from(8u32),
+            length: U256::from(8u32),
         };
         let elem_inference_1 = TE::bytes(None);
         let elem_inference_2 = TE::signed_word(Some(64));
@@ -1110,14 +1110,14 @@ mod test {
         state.infer(
             mapping_tv,
             TE::Mapping {
-                key:   key_1_tv,
+                key: key_1_tv,
                 value: value_1_tv,
             },
         );
         state.infer(
             mapping_tv,
             TE::Mapping {
-                key:   key_2_tv,
+                key: key_2_tv,
                 value: value_2_tv,
             },
         );
@@ -1158,14 +1158,14 @@ mod test {
         state.infer(
             mapping_tv,
             TE::Mapping {
-                key:   key_1_tv,
+                key: key_1_tv,
                 value: value_1_tv,
             },
         );
         state.infer(
             mapping_tv,
             TE::Mapping {
-                key:   key_2_tv,
+                key: key_2_tv,
                 value: value_2_tv,
             },
         );
@@ -1209,14 +1209,14 @@ mod test {
         state.infer(
             mapping_tv,
             TE::Mapping {
-                key:   key_1_tv,
+                key: key_1_tv,
                 value: value_1_tv,
             },
         );
         state.infer(
             mapping_tv,
             TE::Mapping {
-                key:   key_2_tv,
+                key: key_2_tv,
                 value: value_2_tv,
             },
         );
@@ -1434,8 +1434,7 @@ mod test {
 
     mod util {
         use crate::tc::{
-            expression::TypeExpression,
-            state::type_variable::TypeVariable,
+            expression::TypeExpression, state::type_variable::TypeVariable,
             unification::UnificationForest,
         };
 

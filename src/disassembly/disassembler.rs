@@ -11,24 +11,15 @@ use std::rc::Rc;
 
 use crate::{
     constant::{
-        DUP_OPCODE_BASE_VALUE,
-        LOG_OPCODE_BASE_VALUE,
-        PUSH_OPCODE_BASE_VALUE,
-        PUSH_OPCODE_MAX_BYTES,
-        SWAP_OPCODE_BASE_VALUE,
+        DUP_OPCODE_BASE_VALUE, LOG_OPCODE_BASE_VALUE, PUSH_OPCODE_BASE_VALUE,
+        PUSH_OPCODE_MAX_BYTES, SWAP_OPCODE_BASE_VALUE,
     },
     error::{
         container::Locatable,
         disassembly::{Error, Result},
     },
     opcode::{
-        arithmetic as arith,
-        control,
-        environment as env,
-        logic,
-        memory as mem,
-        DynOpcode,
-        Opcode,
+        DynOpcode, Opcode, arithmetic as arith, control, environment as env, logic, memory as mem,
     },
 };
 

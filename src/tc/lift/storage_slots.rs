@@ -3,7 +3,7 @@
 
 use crate::{
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{RuntimeBoxedVal, RSV, RSVD},
+    vm::value::{RSV, RSVD, RuntimeBoxedVal},
 };
 
 /// This pass detects and wraps expressions that access constant storage slots
@@ -63,7 +63,7 @@ impl Lift for StorageSlots {
                     };
                     let new_key = RSV::new(key.instruction_pointer(), data, key.provenance(), None);
                     Some(RSVD::StorageWrite {
-                        key:   new_key,
+                        key: new_key,
                         value: value.clone().transform_data(insert_storage_accesses),
                     })
                 }
@@ -89,7 +89,7 @@ impl Lift for StorageSlots {
                     };
                     let slot = RSV::new(key.instruction_pointer(), data, key.provenance(), None);
                     Some(RSVD::SLoad {
-                        key:   slot,
+                        key: slot,
                         value: value.clone().transform_data(insert_storage_accesses),
                     })
                 }
@@ -105,10 +105,10 @@ impl Lift for StorageSlots {
 mod test {
     use crate::{
         tc::{
-            lift::{storage_slots::StorageSlots, Lift},
+            lift::{Lift, storage_slots::StorageSlots},
             state::TypeCheckerState,
         },
-        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
+        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
     };
 
     #[test]
@@ -119,8 +119,8 @@ mod test {
         let mapping_access = RSV::new_synthetic(
             2,
             RSVD::MappingIndex {
-                key:        mapping_key.clone(),
-                slot:       slot_index_constant.clone(),
+                key: mapping_key.clone(),
+                slot: slot_index_constant.clone(),
                 projection: None,
             },
         );
@@ -157,8 +157,8 @@ mod test {
         let mapping_access = RSV::new_synthetic(
             2,
             RSVD::MappingIndex {
-                key:        mapping_key.clone(),
-                slot:       slot_index_constant.clone(),
+                key: mapping_key.clone(),
+                slot: slot_index_constant.clone(),
                 projection: None,
             },
         );
@@ -166,7 +166,7 @@ mod test {
         let write = RSV::new_synthetic(
             7,
             RSVD::StorageWrite {
-                key:   outer_key.clone(),
+                key: outer_key.clone(),
                 value: mapping_access,
             },
         );
@@ -214,7 +214,7 @@ mod test {
         let storage_store = RSV::new_synthetic(
             2,
             RSVD::StorageWrite {
-                key:   storage_key.clone(),
+                key: storage_key.clone(),
                 value: storage_value.clone(),
             },
         );
@@ -243,7 +243,7 @@ mod test {
         let dyn_array = RSV::new_synthetic(
             2,
             RSVD::DynamicArrayIndex {
-                slot:  input_slot.clone(),
+                slot: input_slot.clone(),
                 index: input_index.clone(),
             },
         );
@@ -280,8 +280,8 @@ mod test {
         let mapping_access = RSV::new_synthetic(
             2,
             RSVD::MappingIndex {
-                key:        mapping_key.clone(),
-                slot:       input_slot.clone(),
+                key: mapping_key.clone(),
+                slot: input_slot.clone(),
                 projection: None,
             },
         );
@@ -317,7 +317,7 @@ mod test {
         let storage_store = RSV::new_synthetic(
             2,
             RSVD::StorageWrite {
-                key:   input_slot.clone(),
+                key: input_slot.clone(),
                 value: storage_value.clone(),
             },
         );
@@ -348,7 +348,7 @@ mod test {
         let dyn_array = RSV::new_synthetic(
             2,
             RSVD::DynamicArrayIndex {
-                slot:  input_slot.clone(),
+                slot: input_slot.clone(),
                 index: input_index.clone(),
             },
         );
@@ -374,7 +374,7 @@ mod test {
         let s_load = RSV::new_synthetic(
             1,
             RSVD::SLoad {
-                key:   input_key.clone(),
+                key: input_key.clone(),
                 value: input_value.clone(),
             },
         );

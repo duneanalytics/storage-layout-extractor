@@ -102,7 +102,7 @@ impl From<VMThread> for VMState {
 mod test {
     use crate::{
         disassembly::InstructionStream,
-        vm::{state::VMState, thread::VMThread, Config},
+        vm::{Config, state::VMState, thread::VMThread},
     };
 
     #[test]

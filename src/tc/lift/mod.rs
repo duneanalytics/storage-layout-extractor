@@ -23,14 +23,10 @@ use crate::{
     error::unification::Result,
     tc::{
         lift::{
-            dynamic_array_access::DynamicArrayIndex,
-            mapping_index::MappingIndex,
-            mapping_offset::MappingOffset,
-            mul_shifted::MulShiftedValue,
-            packed_encoding::PackedEncoding,
-            proxy_slots::ProxySlots,
-            recognise_hashed_slots::StorageSlotHashes,
-            storage_slots::StorageSlots,
+            dynamic_array_access::DynamicArrayIndex, mapping_index::MappingIndex,
+            mapping_offset::MappingOffset, mul_shifted::MulShiftedValue,
+            packed_encoding::PackedEncoding, proxy_slots::ProxySlots,
+            recognise_hashed_slots::StorageSlotHashes, storage_slots::StorageSlots,
             sub_word::SubWordValue,
         },
         state::TypeCheckerState,

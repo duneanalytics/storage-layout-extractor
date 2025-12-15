@@ -307,7 +307,7 @@ impl ExecutionThread {
 
         let range_usize: Range<usize> = Range {
             start: range.start as usize,
-            end:   range.end as usize,
+            end: range.end as usize,
         };
 
         Some(&self.instructions[range_usize])
@@ -341,7 +341,7 @@ mod test {
         constant::{DUP_OPCODE_BASE_VALUE, LOG_OPCODE_BASE_VALUE, SWAP_OPCODE_BASE_VALUE},
         disassembly::InstructionStream,
         error::disassembly,
-        opcode::{control, memory, Opcode},
+        opcode::{Opcode, control, memory},
     };
 
     #[test]

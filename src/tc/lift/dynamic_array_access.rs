@@ -3,7 +3,7 @@
 
 use crate::{
     tc::{lift::Lift, state::TypeCheckerState},
-    vm::value::{RuntimeBoxedVal, RSVD},
+    vm::value::{RSVD, RuntimeBoxedVal},
 };
 
 /// This pass detects and lifts expressions that perform dynamic array indices
@@ -46,11 +46,11 @@ impl Lift for DynamicArrayIndex {
         fn guard_dyn_array_accesses(data: &RSVD) -> Option<RSVD> {
             match data {
                 RSVD::StorageWrite { key, value } => Some(RSVD::StorageWrite {
-                    key:   key.clone().transform_data(lift_dyn_array_accesses),
+                    key: key.clone().transform_data(lift_dyn_array_accesses),
                     value: value.clone().transform_data(lift_dyn_array_accesses),
                 }),
                 RSVD::SLoad { key, value } => Some(RSVD::SLoad {
-                    key:   key.clone().transform_data(lift_dyn_array_accesses),
+                    key: key.clone().transform_data(lift_dyn_array_accesses),
                     value: value.clone().transform_data(lift_dyn_array_accesses),
                 }),
                 RSVD::UnwrittenStorageValue { key } => Some(RSVD::UnwrittenStorageValue {
@@ -82,7 +82,7 @@ impl Lift for DynamicArrayIndex {
             };
 
             let access = RSVD::DynamicArrayIndex {
-                slot:  data.transform_data(lift_dyn_array_accesses),
+                slot: data.transform_data(lift_dyn_array_accesses),
                 index: right.clone().transform_data(lift_dyn_array_accesses),
             };
 
@@ -97,10 +97,10 @@ impl Lift for DynamicArrayIndex {
 mod test {
     use crate::{
         tc::{
-            lift::{dynamic_array_access::DynamicArrayIndex, Lift},
+            lift::{Lift, dynamic_array_access::DynamicArrayIndex},
             state::TypeCheckerState,
         },
-        vm::value::{known::KnownWord, Provenance, RSV, RSVD},
+        vm::value::{Provenance, RSV, RSVD, known::KnownWord},
     };
 
     #[test]
@@ -117,14 +117,14 @@ mod test {
         let add = RSV::new_synthetic(
             3,
             RSVD::Add {
-                left:  hash,
+                left: hash,
                 right: input_index.clone(),
             },
         );
         let store = RSV::new_synthetic(
             4,
             RSVD::StorageWrite {
-                key:   add,
+                key: add,
                 value: input_value.clone(),
             },
         );

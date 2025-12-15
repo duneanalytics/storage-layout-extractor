@@ -47,7 +47,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{s_load_is_inner_types::SLoadIsInnerTypesRule, InferenceRule},
+            rule::{InferenceRule, s_load_is_inner_types::SLoadIsInnerTypesRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},
@@ -61,7 +61,7 @@ mod test {
         let s_load = RSV::new_synthetic(
             2,
             RSVD::SLoad {
-                key:   key.clone(),
+                key: key.clone(),
                 value: value.clone(),
             },
         );

@@ -42,7 +42,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{offset_size::OffsetSizeRule, InferenceRule},
+            rule::{InferenceRule, offset_size::OffsetSizeRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},
@@ -82,7 +82,7 @@ mod test {
             2,
             RSVD::CodeCopy {
                 offset: offset.clone(),
-                size:   size.clone(),
+                size: size.clone(),
             },
         );
 
@@ -113,7 +113,7 @@ mod test {
             2,
             RSVD::ReturnData {
                 offset: offset.clone(),
-                size:   size.clone(),
+                size: size.clone(),
             },
         );
 

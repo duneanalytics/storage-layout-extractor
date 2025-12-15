@@ -2,7 +2,7 @@
 
 use crate::{
     opcode::{ExecuteResult, Opcode},
-    vm::{value::RSVD, VM},
+    vm::{VM, value::RSVD},
 };
 
 /// The `ADD` opcode performs addition.
@@ -204,7 +204,7 @@ impl Opcode for Div {
             instruction_pointer,
             RSVD::Divide {
                 dividend: a,
-                divisor:  b,
+                divisor: b,
             },
         );
 
@@ -267,7 +267,7 @@ impl Opcode for SDiv {
             instruction_pointer,
             RSVD::SignedDivide {
                 dividend: a,
-                divisor:  b,
+                divisor: b,
             },
         );
 
@@ -327,7 +327,7 @@ impl Opcode for Mod {
             instruction_pointer,
             RSVD::Modulo {
                 dividend: a,
-                divisor:  b,
+                divisor: b,
             },
         );
 
@@ -390,7 +390,7 @@ impl Opcode for SMod {
             instruction_pointer,
             RSVD::SignedModulo {
                 dividend: a,
-                divisor:  b,
+                divisor: b,
             },
         );
 
@@ -461,7 +461,7 @@ impl Opcode for AddMod {
             instruction_pointer,
             RSVD::Modulo {
                 dividend: add,
-                divisor:  n,
+                divisor: n,
             },
         );
 
@@ -532,7 +532,7 @@ impl Opcode for MulMod {
             instruction_pointer,
             RSVD::Modulo {
                 dividend: mul,
-                divisor:  n,
+                divisor: n,
             },
         );
 
@@ -591,7 +591,7 @@ impl Opcode for Exp {
         let result = vm.build().symbolic_exec(
             instruction_pointer,
             RSVD::Exp {
-                value:    a,
+                value: a,
                 exponent: b,
             },
         );
@@ -685,7 +685,7 @@ impl Opcode for SignExtend {
 #[cfg(test)]
 mod test {
     use crate::{
-        opcode::{arithmetic, test_util as util, Opcode},
+        opcode::{Opcode, arithmetic, test_util as util},
         vm::value::{Provenance, RSV, RSVD},
     };
 

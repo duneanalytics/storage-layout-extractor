@@ -58,7 +58,7 @@ mod test {
     use crate::{
         tc::{
             expression::TE,
-            rule::{dynamic_array_write::DynamicArrayWriteRule, InferenceRule},
+            rule::{InferenceRule, dynamic_array_write::DynamicArrayWriteRule},
             state::TypeCheckerState,
         },
         vm::value::{Provenance, RSV, RSVD, TCSVD},
@@ -79,7 +79,7 @@ mod test {
         let dyn_array = RSV::new_synthetic(
             4,
             RSVD::DynamicArrayIndex {
-                slot:  slot_of_base_slot.clone(),
+                slot: slot_of_base_slot.clone(),
                 index: index.clone(),
             },
         );
@@ -92,7 +92,7 @@ mod test {
         let store = RSV::new_synthetic(
             6,
             RSVD::StorageWrite {
-                key:   slot_of_dyn_array.clone(),
+                key: slot_of_dyn_array.clone(),
                 value: value.clone(),
             },
         );

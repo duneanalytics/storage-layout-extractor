@@ -49,7 +49,7 @@ mod test {
     use crate::{
         tc::{
             expression::{Span, TE},
-            rule::{packed_encoding::PackedEncodingRule, InferenceRule},
+            rule::{InferenceRule, packed_encoding::PackedEncodingRule},
             state::TypeCheckerState,
         },
         vm::value::{PackedSpan, Provenance, RSV, RSVD, TCSVD},

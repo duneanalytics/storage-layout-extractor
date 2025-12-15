@@ -65,10 +65,10 @@ mod test {
         constant::WORD_SIZE_BITS,
         tc::{
             expression::{Span, TE},
-            rule::{mapping_access::MappingAccessRule, InferenceRule},
+            rule::{InferenceRule, mapping_access::MappingAccessRule},
             state::TypeCheckerState,
         },
-        vm::value::{known::KnownWord, Provenance, RSV, RSVD, TCSVD},
+        vm::value::{Provenance, RSV, RSVD, TCSVD, known::KnownWord},
     };
 
     #[test]
@@ -80,8 +80,8 @@ mod test {
         let mapping = RSV::new_synthetic(
             3,
             RSVD::MappingIndex {
-                key:        v_1.clone(),
-                slot:       mapping_slot.clone(),
+                key: v_1.clone(),
+                slot: mapping_slot.clone(),
                 projection: None,
             },
         );

@@ -58,7 +58,7 @@ impl container::Locatable for Error {
     fn locate(self, instruction_pointer: u32) -> Self::Located {
         container::Located {
             location: instruction_pointer,
-            payload:  self,
+            payload: self,
         }
     }
 }

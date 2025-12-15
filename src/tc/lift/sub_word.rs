@@ -6,10 +6,10 @@ use itertools::Itertools;
 use crate::{
     constant::WORD_SIZE_BITS,
     tc::{
-        lift::{mul_shifted::MulShiftedValue, Lift},
+        lift::{Lift, mul_shifted::MulShiftedValue},
         state::TypeCheckerState,
     },
-    vm::value::{RuntimeBoxedVal, RSVD, SVD},
+    vm::value::{RSVD, RuntimeBoxedVal, SVD},
 };
 
 /// This pass detects and folds expressions that mask word-size values where the
@@ -209,10 +209,10 @@ impl SubWord {
 mod test {
     use crate::{
         tc::{
-            lift::{sub_word::SubWordValue, Lift},
+            lift::{Lift, sub_word::SubWordValue},
             state::TypeCheckerState,
         },
-        vm::value::{known::KnownWord, Provenance, SV, SVD},
+        vm::value::{Provenance, SV, SVD, known::KnownWord},
     };
 
     #[test]
@@ -281,7 +281,7 @@ mod test {
         let subtract = SV::new_synthetic(
             3,
             SVD::Subtract {
-                left:  shift,
+                left: shift,
                 right: one,
             },
         );
@@ -322,7 +322,7 @@ mod test {
         let mask = SV::new_synthetic(
             3,
             SVD::Subtract {
-                left:  shift,
+                left: shift,
                 right: one,
             },
         );
@@ -334,14 +334,14 @@ mod test {
         let mask_on_left = SV::new_synthetic(
             5,
             SVD::And {
-                left:  mask.clone(),
+                left: mask.clone(),
                 right: input_value.clone(),
             },
         );
         let mask_on_right = SV::new_synthetic(
             5,
             SVD::And {
-                left:  input_value.clone(),
+                left: input_value.clone(),
                 right: mask,
             },
         );
@@ -386,7 +386,7 @@ mod test {
         let mask = SV::new_synthetic(
             3,
             SVD::Subtract {
-                left:  shift,
+                left: shift,
                 right: one,
             },
         );
@@ -396,7 +396,7 @@ mod test {
         let mask_operation = SV::new_synthetic(
             5,
             SVD::And {
-                left:  mask.clone(),
+                left: mask.clone(),
                 right: input_value.clone(),
             },
         );
@@ -405,14 +405,14 @@ mod test {
         let recurse_on_left = SV::new_synthetic(
             6,
             SVD::And {
-                left:  mask_operation.clone(),
+                left: mask_operation.clone(),
                 right: mask.clone(),
             },
         );
         let recurse_on_right = SV::new_synthetic(
             7,
             SVD::And {
-                left:  mask,
+                left: mask,
                 right: mask_operation,
             },
         );
