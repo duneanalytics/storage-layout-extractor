@@ -1,10 +1,7 @@
 //! This module contains the definition of the type checker state and other
 //! supporting types.
 
-use std::{
-    array,
-    collections::HashMap,
-};
+use std::{array, collections::HashMap};
 
 use type_variable::{TypeVariable, TypeVariableSource};
 
