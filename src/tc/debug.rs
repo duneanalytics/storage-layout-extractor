@@ -180,7 +180,7 @@ pub fn collect_vars_in_tree_of(
 
     while let Some(tv) = tyvar_queue.pop_front() {
         let inferences = state.inferences_for(tv);
-        for i in inferences.iter() {
+        for i in &inferences {
             match i {
                 TE::Any | TE::Word { .. } | TE::Conflict { .. } | TE::Bytes => (),
                 TE::Equal { id } => {
@@ -202,7 +202,7 @@ pub fn collect_vars_in_tree_of(
                     }
                 }
                 TE::Packed { types, .. } => {
-                    for s in types.iter() {
+                    for s in types {
                         if !seen.contains(&s.typ) {
                             tyvar_queue.push_back(s.typ);
                         }

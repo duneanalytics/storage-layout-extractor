@@ -709,14 +709,16 @@ mod test {
         let inference_1 = TE::bytes(Some(ADDRESS_WIDTH_BITS));
         let inference_2 = TE::bytes(None);
         let inference_3 = TE::address();
-        let inferences = vec![inference_1, inference_2, inference_3];
+        let inferences = [inference_1, inference_2, inference_3];
         let inference_permutations: Vec<Vec<_>> =
             inferences.iter().permutations(inferences.len()).unique().collect();
 
         // Check that they combine properly, and produce the same result no matter the
         // order
         for permutation in inference_permutations {
-            permutation.into_iter().for_each(|i| state.infer(v_1_tv, i.clone()));
+            for i in permutation.into_iter() {
+                state.infer(v_1_tv, i.clone());
+            }
 
             unify(&mut state, &LazyWatchdog.in_rc())?;
             let result = util::get_inference(v_1_tv, state.result());
@@ -742,14 +744,16 @@ mod test {
         let inference_1 = TE::signed_word(Some(64));
         let inference_2 = TE::bytes(None);
         let inference_3 = TE::signed_word(None);
-        let inferences = vec![inference_1, inference_2, inference_3];
+        let inferences = [inference_1, inference_2, inference_3];
         let inference_permutations: Vec<Vec<_>> =
             inferences.iter().permutations(inferences.len()).unique().collect();
 
         // Check that they combine properly, and produce the same result no matter the
         // order
         for permutation in inference_permutations {
-            permutation.into_iter().for_each(|i| state.infer(v_1_tv, i.clone()));
+            for i in permutation.into_iter() {
+                state.infer(v_1_tv, i.clone());
+            }
 
             unify(&mut state, &LazyWatchdog.in_rc())?;
             let result = util::get_inference(v_1_tv, state.result());
@@ -771,14 +775,16 @@ mod test {
         // Set up some inferences
         let inference_1 = TE::signed_word(Some(64));
         let inference_2 = TE::signed_word(Some(128));
-        let inferences = vec![inference_1, inference_2];
+        let inferences = [inference_1, inference_2];
         let permutations: Vec<Vec<_>> =
             inferences.iter().permutations(inferences.len()).unique().collect();
 
         // Check that they combine properly, and produce the same error no matter the
         // order
         for permutation in permutations {
-            permutation.into_iter().for_each(|i| state.infer(v_1_ty, i.clone()));
+            for i in permutation.into_iter() {
+                state.infer(v_1_ty, i.clone());
+            }
 
             unify(&mut state, &LazyWatchdog.in_rc())?;
             let result = util::get_inference(v_1_ty, state.result());
@@ -804,14 +810,16 @@ mod test {
         let inference_2 = TE::DynamicArray {
             element: element_tv,
         };
-        let inferences = vec![inference_1, inference_2];
+        let inferences = [inference_1, inference_2];
         let permutations: Vec<Vec<_>> =
             inferences.iter().permutations(inferences.len()).unique().collect();
 
         // Check that they combine properly, and produce the same result no matter the
         // order
         for permutation in permutations {
-            permutation.into_iter().for_each(|i| state.infer(array_tv, i.clone()));
+            for i in permutation.into_iter() {
+                state.infer(array_tv, i.clone());
+            }
 
             unify(&mut state, &LazyWatchdog.in_rc())?;
             let result = util::get_inference(array_tv, state.result());
@@ -842,14 +850,16 @@ mod test {
         let inference_2 = TE::DynamicArray {
             element: element_tv,
         };
-        let inferences = vec![inference_1, inference_2];
+        let inferences = [inference_1, inference_2];
         let permutations: Vec<Vec<_>> =
             inferences.iter().permutations(inferences.len()).unique().collect();
 
         // Check that they combine properly, and produce the same result no matter the
         // order
         for permutation in permutations {
-            permutation.into_iter().for_each(|i| state.infer(array_tv, i.clone()));
+            for i in permutation.into_iter() {
+                state.infer(array_tv, i.clone());
+            }
 
             unify(&mut state, &LazyWatchdog.in_rc())?;
             let result = util::get_inference(array_tv, state.result());
@@ -879,14 +889,16 @@ mod test {
         let elem_inference_2 = TE::signed_word(Some(64));
         state.infer(elem_1_tv, elem_inference_1);
         state.infer(elem_2_tv, elem_inference_2);
-        let inferences = vec![array_inference_1, array_inference_2];
+        let inferences = [array_inference_1, array_inference_2];
         let permutations: Vec<Vec<_>> =
             inferences.iter().permutations(inferences.len()).unique().collect();
 
         // Check that we get the same result, and that they combine properly
         for permutation in permutations {
             // Register the array inferences in the state
-            permutation.into_iter().for_each(|i| state.infer(array_tv, i.clone()));
+            for i in permutation.into_iter() {
+                state.infer(array_tv, i.clone());
+            }
 
             // Check the result is right
             unify(&mut state, &LazyWatchdog.in_rc())?;
@@ -921,14 +933,16 @@ mod test {
         let elem_inference_2 = TE::signed_word(Some(64));
         state.infer(elem_1_tv, elem_inference_1);
         state.infer(elem_2_tv, elem_inference_2);
-        let inferences = vec![array_inference_1, array_inference_2];
+        let inferences = [array_inference_1, array_inference_2];
         let permutations: Vec<Vec<_>> =
             inferences.iter().permutations(inferences.len()).unique().collect();
 
         // Check that we get the same result, and that they combine properly
         for permutation in permutations {
             // Register the array inferences in the state
-            permutation.into_iter().for_each(|i| state.infer(array_tv, i.clone()));
+            for i in permutation.into_iter() {
+                state.infer(array_tv, i.clone());
+            }
 
             // Check the array is right
             unify(&mut state, &LazyWatchdog.in_rc())?;
@@ -974,14 +988,16 @@ mod test {
         let elem_inference_2 = TE::signed_word(Some(64));
         state.infer(elem_1_tv, elem_inference_1);
         state.infer(elem_2_tv, elem_inference_2);
-        let inferences = vec![array_inference_1, array_inference_2];
+        let inferences = [array_inference_1, array_inference_2];
         let permutations: Vec<Vec<_>> =
             inferences.iter().permutations(inferences.len()).unique().collect();
 
         // Check that we get the same result, and that they combine properly
         for permutation in permutations {
             // Register the array inferences in the state
-            permutation.into_iter().for_each(|i| state.infer(array_tv, i.clone()));
+            for i in permutation.into_iter() {
+                state.infer(array_tv, i.clone());
+            }
 
             unify(&mut state, &LazyWatchdog.in_rc())?;
             let result = util::get_inference(array_tv, state.result());
@@ -1023,14 +1039,16 @@ mod test {
         let elem_inference_2 = TE::signed_word(Some(64));
         state.infer(elem_1_tv, elem_inference_1);
         state.infer(elem_2_tv, elem_inference_2);
-        let inferences = vec![array_inference_1, array_inference_2];
+        let inferences = [array_inference_1, array_inference_2];
         let permutations: Vec<Vec<_>> =
             inferences.iter().permutations(inferences.len()).unique().collect();
 
         // Check that we get the same result, and that they combine properly
         for permutation in permutations {
             // Register the array inferences in the state
-            permutation.into_iter().for_each(|i| state.infer(array_tv, i.clone()));
+            for i in permutation.into_iter() {
+                state.infer(array_tv, i.clone());
+            }
 
             unify(&mut state, &LazyWatchdog.in_rc())?;
             let result = util::get_inference(array_tv, state.result());
@@ -1074,14 +1092,16 @@ mod test {
         let elem_inference_2 = TE::signed_word(Some(64));
         state.infer(elem_1_tv, elem_inference_1);
         state.infer(elem_2_tv, elem_inference_2);
-        let inferences = vec![array_inference_1, array_inference_2];
+        let inferences = [array_inference_1, array_inference_2];
         let permutations: Vec<Vec<_>> =
             inferences.iter().permutations(inferences.len()).unique().collect();
 
         // Check that we get the same result, and that they combine properly
         for permutation in permutations {
             // Register the array inferences in the state
-            permutation.into_iter().for_each(|i| state.infer(array_tv, i.clone()));
+            for i in permutation.into_iter() {
+                state.infer(array_tv, i.clone());
+            }
 
             unify(&mut state, &LazyWatchdog.in_rc())?;
             let result = util::get_inference(array_tv, state.result());

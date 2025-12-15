@@ -36,7 +36,7 @@ fn kills_extractor_when_needed() -> anyhow::Result<()> {
     let error = errors.payloads().first().unwrap();
 
     match &error.payload {
-        Error::Execution(error::execution::Error::StoppedByWatchdog { .. }) => (),
+        Error::Execution(error::execution::Error::StoppedByWatchdog) => (),
         _ => panic!("Wrong payload"),
     }
 

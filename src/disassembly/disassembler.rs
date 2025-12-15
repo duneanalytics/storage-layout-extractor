@@ -201,7 +201,7 @@ pub fn disassemble(bytes: &[u8]) -> Result<Vec<DynOpcode>> {
     // as invalid
     if !push_bytes.is_empty() && push_bytes.len() != push_size as usize {
         add_op(ops, control::Invalid::new(last_push));
-        for b in push_bytes.iter() {
+        for b in &push_bytes {
             add_op(ops, control::Invalid::new(*b));
         }
     } else if push_size != 0 {

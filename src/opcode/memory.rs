@@ -1466,7 +1466,7 @@ mod test {
                 assert_eq!(offset.provenance(), Provenance::Synthetic);
             }
             _ => panic!("Invalid data"),
-        };
+        }
         assert_eq!(item.provenance(), Provenance::Execution);
 
         Ok(())
@@ -1519,7 +1519,7 @@ mod test {
                 assert_eq!(size, &input_size);
             }
             _ => panic!("Incorrect payload"),
-        };
+        }
         assert_eq!(loaded.provenance(), Provenance::Execution);
 
         Ok(())
@@ -1641,7 +1641,7 @@ mod test {
                 assert_eq!(size, &input_size);
             }
             _ => panic!("Incorrect payload"),
-        };
+        }
         assert_eq!(loaded.provenance(), Provenance::Execution);
 
         Ok(())
@@ -1924,7 +1924,7 @@ mod test {
                     assert_eq!(value, &opcode.bytes_as_word());
                 }
                 _ => panic!("Incorrect payload"),
-            };
+            }
         }
 
         Ok(())

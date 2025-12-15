@@ -450,7 +450,7 @@ impl TypeCheckerState {
         expression: impl Into<TypeExpression>,
     ) {
         let expression = expression.into();
-        for v in variables.into_iter() {
+        for v in variables {
             self.infer(v, expression.clone());
         }
     }
