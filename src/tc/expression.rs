@@ -278,9 +278,11 @@ pub type InferenceSet = HashSet<TypeExpression>;
 
 /// A representation of the special ways in which a word could be used.
 #[derive(Copy, Clone, Debug, Eq, Hash, PartialEq)]
+#[derive(Default)]
 pub enum WordUse {
     /// The word is used as data (equivalent to `bytesN`) where we know nothing
     /// more about it.
+    #[default]
     Bytes,
 
     /// The word is used numerically, but is not known to be signed or unsigned.
@@ -358,11 +360,6 @@ impl WordUse {
     }
 }
 
-impl Default for WordUse {
-    fn default() -> Self {
-        Self::Bytes
-    }
-}
 
 impl Display for WordUse {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {

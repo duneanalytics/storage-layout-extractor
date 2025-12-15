@@ -591,7 +591,7 @@ pub enum SymbolicValueData<AuxData> {
 
     /// Loading the data at `offset` for `size` in the call data.
     ///
-    /// Note that CallData has non-structural identity.
+    /// Note that `CallData` has non-structural identity.
     CallData { id: Uuid, offset: BoxedVal<AuxData>, size: BoxedVal<AuxData> },
 
     /// The size of the current call data.

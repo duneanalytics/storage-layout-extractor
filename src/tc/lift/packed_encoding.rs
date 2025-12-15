@@ -67,8 +67,7 @@ impl Lift for PackedEncoding {
             let elements = unpick_ors(value.clone());
             let true = elements
                 .iter()
-                .map(|e| matches!(e.data(), RSVD::Shifted { .. } | RSVD::SubWord { .. }))
-                .all(|r| r)
+                .all(|e| matches!(e.data(), RSVD::Shifted { .. } | RSVD::SubWord { .. }))
             else {
                 return None;
             };

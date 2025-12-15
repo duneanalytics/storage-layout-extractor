@@ -36,4 +36,3 @@ macro_rules! bytecode {
 }
 
 // Export it scoped
-pub use bytecode;

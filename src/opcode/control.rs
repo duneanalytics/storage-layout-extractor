@@ -232,7 +232,7 @@ impl Opcode for JumpI {
                 // If we get an error here, we need to change what we do based on whether it is
                 // in this thread or the target thread.
                 let result = match payload.payload {
-                    execution::Error::NoConcreteJumpDestination { .. }
+                    execution::Error::NoConcreteJumpDestination
                     | execution::Error::NonExistentJumpTarget { .. }
                     | execution::Error::InvalidJumpTarget { .. }
                     | execution::Error::InvalidOffsetForJump { .. } => Ok(payload),
@@ -898,9 +898,10 @@ impl Opcode for Nop {
 #[cfg(test)]
 mod test {
     use crate::{
+        bytecode,
         disassembly::InstructionStream,
         error::execution,
-        opcode::{Opcode, control, macros::bytecode, test_util as util},
+        opcode::{Opcode, control, test_util as util},
         vm::value::{Provenance, RSV, RSVD, known::KnownWord},
     };
 

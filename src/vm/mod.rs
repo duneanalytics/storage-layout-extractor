@@ -166,7 +166,7 @@ impl VM {
 
             let result = instruction.execute(self);
             match result {
-                Ok(_) => {
+                Ok(()) => {
                     self.current_thread_mut()
                         .expect(
                             "We already know a thread is present as we executed an instruction \

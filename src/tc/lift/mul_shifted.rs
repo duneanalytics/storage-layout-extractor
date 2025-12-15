@@ -88,9 +88,7 @@ impl Lift for MulShiftedValue {
                     _ => return None,
                 };
 
-            let Some(offset) = MulShiftedValue::which_power_of_2(constant) else {
-                return None;
-            };
+            let offset = MulShiftedValue::which_power_of_2(constant)?;
 
             Some(RSVD::Shifted { offset, value })
         }

@@ -197,7 +197,7 @@ pub struct LocatedStackHandle<'a> {
     stack: &'a mut Stack,
 }
 
-impl<'a> LocatedStackHandle<'a> {
+impl LocatedStackHandle<'_> {
     /// Pushes the provided value onto the top of the stack.
     ///
     /// # Errors

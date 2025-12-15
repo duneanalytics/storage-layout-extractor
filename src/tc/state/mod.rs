@@ -3,7 +3,7 @@
 
 use std::{
     array,
-    collections::{HashMap, HashSet},
+    collections::HashMap,
 };
 
 use type_variable::{TypeVariable, TypeVariableSource};
@@ -98,7 +98,7 @@ impl TypeCheckerState {
 
         // Register the result
         self.expressions.entry(new_tv).or_insert(value_for_var);
-        self.inferences.entry(new_tv).or_insert(HashSet::new());
+        self.inferences.entry(new_tv).or_default();
 
         // Return the newly-allocated type variable
         new_tv
@@ -394,7 +394,7 @@ impl TypeCheckerState {
 
         // Register the result
         self.expressions.entry(type_var).or_insert(new_value.clone());
-        self.inferences.entry(type_var).or_insert(HashSet::new());
+        self.inferences.entry(type_var).or_default();
 
         if is_stable {
             self.stable_types.insert(value, new_value.clone());
@@ -450,7 +450,9 @@ impl TypeCheckerState {
         expression: impl Into<TypeExpression>,
     ) {
         let expression = expression.into();
-        variables.into_iter().for_each(|v| self.infer(v, expression.clone()));
+        for v in variables.into_iter() {
+            self.infer(v, expression.clone());
+        }
     }
 
     /// Adds the provided `expression` to the typing expressions for the

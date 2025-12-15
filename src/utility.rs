@@ -41,7 +41,7 @@ impl Debug for U256Wrapper {
 
 impl PartialOrd for U256Wrapper {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        self.0.partial_cmp(&other.0)
+        Some(self.cmp(other))
     }
 }
 

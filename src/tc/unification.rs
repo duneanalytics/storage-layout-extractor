@@ -52,7 +52,7 @@ pub fn unify(state: &mut TypeCheckerState, watchdog: &DynWatchdog) -> Result<()>
             match type_expr {
                 TypeExpression::Equal { id } => forest.union(&type_var, id),
                 _ => forest.add_data(&type_var, HashSet::from([type_expr.clone()])),
-            };
+            }
         }
     }
 
